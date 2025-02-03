@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './App.css';
 import Navbar from './Navbar'; // Importing Navbar component
+import { Gallery } from './components/Gallery';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
       <div className="card">
         <p>Welcome to the MAXX ENERGY Portal. Please login to access more features.</p>
       </div>
+      <Gallery />
+
     </>
   );
 }
-
 export default App;
