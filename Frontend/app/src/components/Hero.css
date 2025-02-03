@@ -1,6 +1,7 @@
 /* src/components/Hero.css */
 .hero {
-    background: url('/images/hero-img.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
     height: 80vh;
     display: flex;
     align-items: center;
@@ -10,7 +11,7 @@
   
 .hero-content {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 2rem;
     border-radius: 8px;
 }
@@ -19,7 +20,7 @@
     margin-top: 1rem;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    background-color: #464545;
+    background-color: #3f3c3b;
     color: white;
     border: none;
     border-radius: 4px;
@@ -27,6 +28,7 @@
 }
   
 .hero-button:hover {
-    background-color: #777574;
+    background-color: #312f2e;
 }
+  
   

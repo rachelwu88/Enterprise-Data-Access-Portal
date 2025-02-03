@@ -1,10 +1,13 @@
-// src/components/Hero.js
+// src/components/Hero.jsx
 import React from 'react';
-import './Hero.css'; // Import the CSS file for styling
+import './Hero.css';
 
 const Hero = () => {
   return (
-    <section className="hero">
+    <section 
+      className="hero" 
+      style={{ backgroundImage: 'url(/images/hero-bg.jpg)' }}
+    >
       <div className="hero-content">
         <h1>Welcome to Our Website!</h1>
         <p>Discover our amazing products and services.</p>
