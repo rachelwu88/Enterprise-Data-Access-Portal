@@ -101,12 +101,20 @@ nav {
     justify-content: center;
     align-items: center;
   }
-  
+
+  .modal__logo img {
+    width: 100px;
+    height: auto;
+    float: left;
+    position: block;
+  }
+
   .modal__content {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 20px;
     border-radius: 8px;
-    width: 300px;
+    width: 500px;
+    height: 440px;
     text-align: center;
   }
   
@@ -117,4 +125,79 @@ nav {
     font-size: 24px;
     cursor: pointer;
   }
+
+  /* input lines */
+
+  .modal input {
+    width: 80%;
+    padding: 10px;
+    margin: 15px 0;
+    border: none; 
+    border-bottom: 2px solid #ccc; 
+    background: transparent;
+    font-size: 16px;
+    color: #333;
+    transition: border-color 0.3s ease-in-out;
+  }
   
+  .modal input:focus {
+    border-bottom: 2px solid #747677;
+    outline: none;
+  }
+  
+  .modal input::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+
+  /* checkbox */
+
+  .remember-forgot{
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .remember-me {
+    display: flex;
+    float: left;
+    color: #ffffff;
+    font-size: 10px;
+  }
+  
+  .remember-me input {
+    margin-right: 5px;
+  }
+  
+  /* Forgot Password Link */
+  .forgot-password {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  
+  .forgot-password:hover {
+    background-color: #33333300;
+    color: #c9c5c5;
+  }
+
+  .modal button{
+    width: 150px;
+    border-radius: 3px;
+  }
+
+  /* sign up */
+
+  .signup-text{
+    font-size: 10px;
+  }
+  
+  .signup-button{
+    font-size: 10px;
+  }
+
+  .signup-button:hover{
+    background-color: #33333300;
+    color:#c9c5c5;
+  }

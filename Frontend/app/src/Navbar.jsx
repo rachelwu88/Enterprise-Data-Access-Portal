@@ -31,12 +31,23 @@ const Navbar = () => {
       {isModalOpen && (
         <div className="modal">
           <div className="modal__content">
+            <div className="modal__logo">
+              <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
+            </div><br></br><br></br>
             <span className="modal__close" onClick={closeModal}>&times;</span>
             <h2>Login</h2>
             <form>
-              <input type="email" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
-              <button type="submit">Submit</button>
+              <input type="email" placeholder="Email" required /><br></br>
+              <input type="password" placeholder="Password" required /><br></br>
+              {/* Remember Me & Forgot Password Container */}
+              <div className="remember-forgot">
+                <label className="remember-me">
+                  <input type="checkbox" /> Remember Me
+                </label>
+                <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
+              </div><br></br>
+              <button type="submit">Login</button><br></br><br></br>
+              <p className="signup-text">Don't have an account?<a className="signup-button" href="#signup">Sign Up</a></p>
             </form>
           </div>
         </div>
