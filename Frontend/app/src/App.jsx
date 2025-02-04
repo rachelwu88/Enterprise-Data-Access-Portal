@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import Navbar from './Navbar'; // Importing Navbar component
-<<<<<<< HEAD
 import { Gallery } from './components/Gallery';
-=======
 import Hero from './components/Hero';
->>>>>>> 31a441f84eedaa659b0a6b3229723e4cd4397be5
 
 function App() {
   return (
