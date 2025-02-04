@@ -38,15 +38,15 @@ const Navbar = () => {
             <h2>Login</h2>
             <form>
               <input type="email" placeholder="Email" required /><br></br>
-              <input type="password" placeholder="Password" required /><br></br>
+              <input type="password" placeholder="Password" required />
               {/* Remember Me & Forgot Password Container */}
               <div className="remember-forgot">
                 <label className="remember-me">
-                  <input type="checkbox" /> Remember Me
+                  <input type="checkbox" />Remember Me
                 </label>
                 <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
               </div><br></br>
-              <button type="submit">Login</button><br></br><br></br>
+              <button type="submit">Login</button><br></br>
               <p className="signup-text">Don't have an account?<a className="signup-button" href="#signup">Sign Up</a></p>
             </form>
           </div>
