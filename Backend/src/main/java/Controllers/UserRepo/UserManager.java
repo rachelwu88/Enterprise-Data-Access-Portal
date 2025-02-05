@@ -2,6 +2,7 @@ package Controllers.UserRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserManager {
 
@@ -22,7 +23,7 @@ public class UserManager {
         }
         return null;
     }
-    
+
     /**
      * This method checks if the given email is already taken by a user.
      * @param email The email to be checked.
@@ -77,5 +78,91 @@ public class UserManager {
      */
     public int getUserCount() {
         return users.size();
+    }
+
+    /**
+     * Searches for users whose names contain the given search term (case-insensitive)
+     * @param searchTerm The term to search for in user names
+     * @return List of users whose names contain the search term
+     */
+    public List<User> searchUsersByName(String searchTerm) {
+        return users.stream()
+                .filter(user -> user.getName().toLowerCase().contains(searchTerm.toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Searches for users with email domains matching the given domain
+     * @param domain The email domain to search for (e.g., "gmail.com")
+     * @return List of users with matching email domains
+     */
+    public List<User> getUsersByEmailDomain(String domain) {
+        return users.stream()
+                .filter(user -> user.getEmail().endsWith("@" + domain))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Batch removes multiple users by their emails
+     * @param emails List of email addresses to remove
+     * @return Number of users successfully removed
+     */
+    public int removeUsers(List<String> emails) {
+        int initialCount = users.size();
+        users.removeIf(user -> emails.contains(user.getEmail()));
+        return initialCount - users.size();
+    }
+
+    /**
+     * Checks if the system has any users
+     * @return true if there are no users in the system
+     */
+    public boolean isEmpty() {
+        return users.isEmpty();
+    }
+
+    /**
+     * Removes all users from the system
+     * Use with caution!
+     */
+    public void clearAllUsers() {
+        users.clear();
+    }
+
+    /**
+     * Creates a backup of all current users
+     * @return A deep copy of the current user list
+     */
+    public List<User> backupUsers() {
+        List<User> backup = new ArrayList<>();
+        for (User user : users) {
+            backup.add(new User(user.getName(), user.getEmail(), user.getPassword()));
+        }
+        return backup;
+    }
+
+    /**
+     * Restores users from a backup
+     * @param backup The list of users to restore from
+     */
+    public void restoreFromBackup(List<User> backup) {
+        users.clear();
+        users.addAll(backup);
+    }
+
+    /**
+     * Adds multiple users at once
+     * @param newUsers List of users to add
+     * @return Number of users successfully added (excluding duplicates)
+     */
+    public int addUsers(List<User> newUsers) {
+        int added = 0;
+        for (User user : newUsers) {
+            if (!isEmailTaken(user.getEmail())) {
+                users.add(user);
+                added++;
+            }
+        }
+        return added;
     }
 }
