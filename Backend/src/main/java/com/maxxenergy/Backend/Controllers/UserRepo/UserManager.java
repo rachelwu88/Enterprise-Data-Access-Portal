@@ -1,4 +1,4 @@
-package Controllers.UserRepo;
+package com.maxxenergy.Backend.Controllers.UserRepo;
 
 import java.util.ArrayList;
 import java.util.List;

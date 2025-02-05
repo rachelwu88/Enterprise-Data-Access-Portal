@@ -1,4 +1,4 @@
-package Controllers.UserRepo;
+package com.maxxenergy.Backend.Controllers.UserRepo;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;

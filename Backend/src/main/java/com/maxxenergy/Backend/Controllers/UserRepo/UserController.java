@@ -1,9 +1,10 @@
-package Controllers.UserRepo;
+package com.maxxenergy.Backend.Controllers.UserRepo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.Optional;
 
@@ -12,6 +13,13 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserRepository userRepository;
+
+   @GetMapping("/{id}")
+   public ResponseEntity<User> getUserById(@PathVariable Long id){
+       return userRepository.findById(id)
+               .map(ResponseEntity::ok)
+               .orElse(ResponseEntity.notFound().build());
+   }
 
 
     //Create a new user
@@ -22,7 +30,7 @@ public class UserController {
     }
 
     //Update information of the user
-    @PutMapping("/")
+    @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
         Optional<User> currentUser = userRepository.findById(id);
         if (currentUser.isPresent()) {
@@ -39,7 +47,7 @@ public class UserController {
     }
 
     //Delete user
-    @DeleteMapping("/")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable long id){
         if(userRepository.existsById(id)){
             userRepository.deleteById(id);

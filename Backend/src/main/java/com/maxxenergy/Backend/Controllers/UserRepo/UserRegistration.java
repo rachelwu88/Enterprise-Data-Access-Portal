@@ -1,4 +1,4 @@
-package Controllers.UserRepo;
+package com.maxxenergy.Backend.Controllers.UserRepo;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
