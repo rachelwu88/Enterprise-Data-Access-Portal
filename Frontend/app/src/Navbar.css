@@ -128,35 +128,78 @@ nav {
 
   /* input lines */
 
-  .modal input {
-    width: 80%;
+  /* .modal input {
+    width: 70%;
     padding: 10px;
     margin: 15px 0;
     border: none; 
-    border-bottom: 2px solid #ccc; 
     background: transparent;
+    border-bottom: 2px solid #ccc; 
     font-size: 16px;
     color: #333;
     transition: border-color 0.3s ease-in-out;
   }
   
-  .modal input:focus {
+  .modal input::placeholder {
+    color: #888;
+    font-size: 14px;
+  } */
+
+  .input-container {
+    width: 100%;
+    max-width: 380px; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 15px auto; 
+    border-bottom: 2px solid #ccc;
+    transition: border-bottom 0.3s ease-in-out;
+  }
+  
+  .input-container img {
+    position: absolute;
+    left: 10px;
+    width: 18px;
+    /* height: 18px; */
+  }
+  
+  .input-container input {
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    text-align: left; 
+    box-shadow: none; 
+  }
+  
+  .input-container input::placeholder {
+    color: #888;
+    font-size: 14px;
+  }
+  
+  .input-container:focus-within{
     border-bottom: 2px solid #747677;
     outline: none;
   }
   
-  .modal input::placeholder {
-    color: #888;
-    font-size: 14px;
+  /* Ensure the form itself is centered */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  
 
 /* Container for the checkbox and forgot password link */
 .remember-forgot {
   display: flex;
-  justify-content: space-between; /* Ensures proper spacing */
+  justify-content: space-between; 
   align-items: center;
   width: 80%;
-  margin: auto; /* Centers the container */
+  margin: auto;
 }
 
 /* Remember Me */
@@ -182,7 +225,8 @@ nav {
 }
 
 .forgot-password:hover {
-  color: #c9c5c5;
+  background: transparent;
+  color:#c9c5c5;
 }
 
 /* Modal Button */
@@ -204,6 +248,10 @@ nav {
   }
 
   .signup-button:hover{
-    background-color: #33333300;
+    background: transparent;
     color:#c9c5c5;
   }
+
+  /* .mailbox-img{
+    width: 20px;
+  } */
