@@ -1,0 +1,39 @@
+:root {
+  --white: #fff;
+}
+
+.section {
+  width: 100vw;
+  background: linear-gradient(to bottom, #000000, #555555);
+  padding: 2rem 0rem;
+}
+
+.section ul {
+  list-style: none;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.flex--small-gap {
+  gap: 1rem;
+}
+
+.flex--large-gap {
+  gap: 2rem;
+}
+
+.section li {
+  text-align: left;
+  cursor: pointer;
+}
+
+.section li a {
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--white);
+}
