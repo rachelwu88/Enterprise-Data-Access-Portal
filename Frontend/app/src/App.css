@@ -1,14 +1,15 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
- 
-html{
+
+html {
   overflow-x: hidden;
 }
 
 #root {
+  /* REMOVE MAX-WIDTH FROM THIS ELEMENT */
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
