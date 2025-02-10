@@ -3,6 +3,7 @@ package com.maxxenergy.Backend.Controllers.UserRepo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.UUID;
 
 public class UserManager {
 
@@ -164,5 +165,36 @@ public class UserManager {
             }
         }
         return added;
+    }
+
+    /**
+     * Resets a user's password using their email
+     * @param email The user's email
+     * @param oldPassword The current password
+     * @param newPassword The new password
+     * @return true if password was reset, false if user not found or old password incorrect
+     */
+    public boolean resetPassword(String email, String oldPassword, String newPassword) {
+        User user = getUserByEmail(email);
+        if (user != null && user.validatePassword(oldPassword)) {
+            user.setPassword(newPassword);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Force resets a user's password (admin function)
+     * @param email The user's email
+     * @param newPassword The new password
+     * @return true if password was reset, false if user not found
+     */
+    public boolean adminResetPassword(String email, String newPassword) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            user.setPassword(newPassword);
+            return true;
+        }
+        return false;
     }
 }
