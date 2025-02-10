@@ -4,7 +4,7 @@ import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
 import mailbox from './assets/mail.png';
 import lock from './assets/lock.png';
-import Signup from './SignUp';
+import Signup from './SignUp.jsx';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
