@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
 /* Main Content Push */
 body.content-pushed {
-  margin-left: 250px; /* Push content to the right when the menu is open */
-  transition: margin-left 0.3s ease; /* Smooth transition effect */
+  margin-left: 250px; 
+  transition: margin-left 0.3s ease;
 }
 
 /* Body Styling */
@@ -12,15 +12,15 @@ body {
   margin: 0;
   font-weight: 200;
   overflow-x: hidden; 
-  transition: margin-left 0.3s ease; /* Smooth transition for content push */
+  transition: margin-left 0.3s ease;
 }
 
 /* Logo Styling */
 .navbar__logo img {
   width: 250px;
   height: auto;
-  margin-top: 1px; /* Adjust logo position */
-  margin-left: 80px; /* To avoid overlap with the hamburger button */
+  margin-top: 1px;
+  margin-left: 80px;
 }
 
 /* Navbar Styling */
@@ -44,21 +44,20 @@ body {
   display: flex;
   align-items: center;
 }
-
 .navbar__menu-icon {
-  display: flex !important; /* Ensures it always displays */
+  display: flex !important;
   flex-direction: column;
   cursor: pointer;
-  z-index: 9999; /* Higher z-index to ensure the icon stays on top */
-  position: fixed; /* Fix the button in place */
+  z-index: 9999;
+  position: fixed;
   left: 10px;
-  top: 25px; /* Adjust top spacing */
+  top: 25px;
   background-color: transparent;
-  padding: 10px; /* Add padding for better click area */
+  padding: 10px;
   width: 75px;
   height: 75px;
-  background-size: cover; /* Ensure the image covers the entire button area */
-  background-position: center; /* Center the image */
+  background-size: cover;
+  background-position: center;
   transition: transform 0.3s ease;
 }
 
@@ -68,18 +67,15 @@ body {
   justify-content: right;
   flex-grow: 1;
 }
-
 .navbar__links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
-
 .navbar__links li {
   margin-right: 20px;
 }
-
 .navbar__links a {
   color: white;
   text-align: center;
@@ -87,17 +83,14 @@ body {
   text-decoration: none;
   font-size: 17px;
 }
-
 .navbar__links a:hover {
   background-color: #ddd;
   color: black;
 }
-
 .navbar__links a.active {
   background-color: #ddd;
   color: black;
 }
-
 /* Right Section (Login) */
 .navbar__right {
   display: flex;
@@ -124,20 +117,20 @@ body {
 .navbar__sidenav {
   position: fixed;
   top: 0;
-  left: -250px; /* Start off-screen on the left */
+  left: -250px;
   width: 250px;
   height: 100%;
   background-color: #111;
   padding-top: 60px;
-  transition: 0.3s ease-in-out; /* Smooth slide in */
+  transition: 0.3s ease-in-out;
   color: white;
-  z-index: 9998; /* Ensure it's below the hamburger icon */
-  overflow-y: auto; /* Allows scrolling if content overflows */
+  z-index: 9998;
+  overflow-y: auto;
 }
 
 /* When menu is open */
 .navbar__sidenav.open {
-  left: 0; /* Move it into view from the left */
+  left: 0;
 }
 
 /* Side Nav Links */
@@ -151,12 +144,12 @@ body {
 }
 
 .navbar__sidenav ul li a {
-  color: #bbb; /* Lighter color for the links */
+  color: #bbb;
   font-size: 18px;
 }
 
 .navbar__sidenav ul li a:hover {
-  background-color: #333; /* Darker hover effect */
+  background-color: #333;
 }
 
 /* Modal Styling for Login */
@@ -172,11 +165,19 @@ body {
   align-items: center;
 }
 
+.modal__logo img {
+  width: 100px;
+  height: auto;
+  float: left;
+  position: block;
+}
+
 .modal__content {
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.7);
   padding: 20px;
   border-radius: 8px;
-  width: 300px;
+  width: 500px;
+  height: 440px;
   text-align: center;
 }
 
@@ -188,21 +189,134 @@ body {
   cursor: pointer;
 }
 
+.input-container {
+  width: 100%;
+  max-width: 380px; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 15px auto; 
+  border-bottom: 2px solid #ccc;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.input-container img {
+  position: absolute;
+  left: 10px;
+  width: 18px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #333;
+  outline: none;
+  text-align: left; 
+  box-shadow: none; 
+}
+
+.input-container input::placeholder {
+  color: #888;
+  font-size: 14px;
+}
+
+.input-container:focus-within{
+  border-bottom: 2px solid #747677;
+  outline: none;
+}
+
+
+/* Ensure the form itself is centered */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+/* Container for the checkbox and forgot password link */
+.remember-forgot {
+display: flex;
+justify-content: space-between; 
+align-items: center;
+width: 80%;
+margin: auto;
+}
+
+
+/* Remember Me */
+.remember-me {
+display: flex;
+align-items: center;
+color: #ffffff;
+font-size: 10px;
+white-space: nowrap;
+}
+
+
+.remember-me input {
+margin-right: 5px;
+}
+
+
+/* Forgot Password Link */
+.forgot-password {
+text-decoration: none;
+background-color: #33333300;
+color: #ffffff;
+font-weight: bold;
+font-size: 10px;
+}
+
+
+.forgot-password:hover {
+background: transparent;
+color:#c9c5c5;
+}
+
+
+/* Modal Button */
+.modal button {
+width: 150px;
+border-radius: 3px;
+display: block;
+margin: 10px auto; /* Centers the button horizontally */
+}
+
+
+/* sign up */
+.signup-text{
+  font-size: 10px;
+}
+
+.signup-button{
+  font-size: 10px;
+}
+
+
+.signup-button:hover{
+  background: transparent;
+  color:#c9c5c5;
+}
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .navbar__logo img {
-    width: 150px; /* Adjust logo size for smaller screens */
+    width: 150px;
   }
 
   .navbar__links {
-    display: none; /* Hide links in mobile view */
+    display: none;
   }
 
   .navbar__menu-icon {
-    left: 20px; /* Adjust hamburger position */
+    left: 20px;
   }
 
   .navbar__sidenav {
-    width: 200px; /* Narrower side nav */
+    width: 200px;
   }
  }

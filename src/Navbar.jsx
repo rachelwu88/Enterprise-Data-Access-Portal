@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
 import sandwichIcon from './assets/sandwich-icon.png';  // Import your sandwich icon
+import mailbox from './assets/mail.png';
+import lock from './assets/lock.png';
+import Signup from './SignUp.jsx'; // Import Signup component
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSignup, setIsSignup] = useState(false); // State to toggle between login and signup
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -16,7 +20,12 @@ const Navbar = () => {
   }, []);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setIsSignup(false); // Reset to login view when modal closes
+  };
+
+  const toggleSignup = (signupState) => setIsSignup(signupState); // Toggle between login and signup
 
   const toggleMenu = () => {
     setIsMenuOpen(prevState => !prevState);  // Toggle the menu state
@@ -72,18 +81,38 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Modal for login */}
+      {/* Modal for login or signup */}
       {isModalOpen && (
         <div className="modal">
-          <div className="modal__content">
-            <span className="modal__close" onClick={closeModal}>&times;</span>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-              <input type="email" placeholder="Email" required />
-              <input type="password" placeholder="Password" required />
-              <button type="submit">Submit</button>
-            </form>
-          </div>
+          {!isSignup ? (
+            <div className="modal__content">
+              <div className="modal__logo">
+                <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
+              </div><br></br><br></br>
+              <span className="modal__close" onClick={closeModal}>&times;</span>
+              <h2>Login</h2>
+              <form onSubmit={handleLogin}>
+                <div className="input-container">
+                  <img src={mailbox} alt="Email" className="mailbox-img" />
+                  <input type="email" placeholder="Email" required /><br></br>
+                </div>
+                <div className="input-container password-container">
+                  <img src={lock} alt="Password" className="lock-img" />
+                  <input type="password" placeholder="Password" required />
+                </div>
+                <div className="remember-forgot">
+                  <label className="remember-me">
+                    <input type="checkbox" />Remember Me
+                  </label>
+                  <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
+                </div><br></br>
+                <button type="submit">Login</button><br></br>
+                <p className="signup-text">Don't have an account? <span onClick={() => toggleSignup(true)} className="signup-button">Register</span></p>
+              </form>
+            </div>
+          ) : (
+            <Signup toggleSignup={toggleSignup} />
+          )}
         </div>
       )}
 
