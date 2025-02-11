@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
-import sandwichIcon from './assets/sandwich-icon.png';  // Import your sandwich icon
+import sandwichIcon from './assets/sandwich-icon.png';
 import mailbox from './assets/mail.png';
 import lock from './assets/lock.png';
-import Signup from './SignUp.jsx'; // Import Signup component
+import Signup from './SignUp.jsx'; 
+import homeIcon from './assets/home-icon.png'; 
+import userIcon from './assets/user-icon.png';
+import reportIcon from './assets/report-icon.png';
+import featureIcon from './assets/features-icon.png';
+import supportIcon from './assets/support-icon.png';
+import settingsIcon from './assets/setting-icon.png';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSignup, setIsSignup] = useState(false); // State to toggle between login and signup
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignup, setIsSignup] = useState(false); 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
   useEffect(() => {
     const storedLoginState = localStorage.getItem('isLoggedIn');
@@ -22,19 +28,10 @@ const Navbar = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsSignup(false); // Reset to login view when modal closes
+    setIsSignup(false); 
   };
 
-  const toggleSignup = (signupState) => setIsSignup(signupState); // Toggle between login and signup
-
-  const toggleMenu = () => {
-    setIsMenuOpen(prevState => !prevState);  // Toggle the menu state
-    if (!isMenuOpen) {
-      document.body.classList.add('content-pushed'); // Add class to body when menu opens
-    } else {
-      document.body.classList.remove('content-pushed'); // Remove class when menu closes
-    }
-  };
+  const toggleSignup = (signupState) => setIsSignup(signupState);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -48,15 +45,16 @@ const Navbar = () => {
     localStorage.removeItem('isLoggedIn');
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    document.body.classList.toggle('content-pushed', !isSidebarOpen); // Change here
+  };
+  
+
   return (
     <>
       <nav className="navbar">
         <div className="navbar__left">
-          {isLoggedIn && (
-            <div className="navbar__menu-icon" onClick={toggleMenu}>
-              <img src={sandwichIcon} alt="Menu" className="menu-icon" />
-            </div>
-          )}
           <div className="navbar__logo">
             <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
           </div>
@@ -118,23 +116,22 @@ const Navbar = () => {
 
       {/* Sidebar component */}
       {isLoggedIn && (
-        <Sidebar isOpen={isMenuOpen} toggleSidebar={toggleMenu} />
+        <div className={`navbar__sidenav ${isSidebarOpen ? 'expanded' : ''}`}>
+          {/* Sandwich button to toggle sidebar */}
+          <div className="navbar__menu-icon" onClick={toggleSidebar}>
+            <img src={sandwichIcon} alt="Menu" />
+          </div>
+          <ul>
+            <li><a href="#home"><img src={homeIcon} alt="Home" /> Home</a></li>
+            <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
+            <li><a href="#report"><img src={reportIcon} alt="Report" /> Report</a></li>
+            <li><a href="#features"><img src={featureIcon} alt="Features" /> Features</a></li>
+            <li><a href="#support"><img src={supportIcon} alt="Support" /> Support</a></li>
+            <li><a href="#settings"><img src={settingsIcon} alt="Settings" /> Settings</a></li>
+          </ul>
+        </div>
       )}
     </>
-  );
-};
-
-const Sidebar = ({ isOpen, toggleSidebar }) => {
-  return (
-    <div className={`navbar__sidenav ${isOpen ? 'open' : ''}`}>
-      <div className={`sidebar ${isOpen ? 'expanded' : ''}`}>
-        <ul>
-          <li><a href="#home">Home</a></li>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#settings">Settings</a></li>
-        </ul>
-      </div>
-    </div>
   );
 };
 

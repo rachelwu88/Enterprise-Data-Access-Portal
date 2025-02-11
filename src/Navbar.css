@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
 /* Main Content Push */
 body.content-pushed {
-  margin-left: 250px; 
+  margin-left: 250px;  /* When expanded, push content */
   transition: margin-left 0.3s ease;
 }
 
@@ -66,6 +67,7 @@ body {
   display: flex;
   justify-content: right;
   flex-grow: 1;
+  left: 60px;
 }
 .navbar__links {
   list-style: none;
@@ -75,6 +77,8 @@ body {
 }
 .navbar__links li {
   margin-right: 20px;
+  margin-top: 40px;
+  left: 60px;
 }
 .navbar__links a {
   color: white;
@@ -82,15 +86,17 @@ body {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  transition: background-color 0.3s ease;  /* Add smooth transition */
 }
 .navbar__links a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #444; /* Darker hover effect */
+  color: white;
 }
 .navbar__links a.active {
   background-color: #ddd;
   color: black;
 }
+
 /* Right Section (Login) */
 .navbar__right {
   display: flex;
@@ -105,6 +111,8 @@ body {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 40px;
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
 
 .navbar__login button:hover {
@@ -113,30 +121,30 @@ body {
   border-color: #333;
 }
 
-/* Side Navigation Bar */
+/* Sidebar - Default is collapsed (narrow) */
 .navbar__sidenav {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: 0;
+  width: 95px;  /* Default collapsed width */
   height: 100%;
-  background-color: #111;
-  padding-top: 60px;
+  background-color: #000000;
+  padding-top: 100px;
   transition: 0.3s ease-in-out;
   color: white;
   z-index: 9998;
   overflow-y: auto;
 }
 
-/* When menu is open */
-.navbar__sidenav.open {
-  left: 0;
+/* When the sidebar is expanded */
+.navbar__sidenav.expanded {
+  width: 500px; /* Expanded width */
 }
 
-/* Side Nav Links */
+/* Sidebar Links - Initially visible in collapsed state */
 .navbar__sidenav ul {
   list-style: none;
-  padding-left: 20px;
+  padding-left: 0px;
 }
 
 .navbar__sidenav ul li {
@@ -144,12 +152,25 @@ body {
 }
 
 .navbar__sidenav ul li a {
-  color: #bbb;
-  font-size: 18px;
+  display: block;
+  text-align: center;
+  padding: 10px 10px;
 }
 
+.navbar__sidenav ul li a img {
+  width: 60px;  /* Adjust icon size */
+  height: auto;
+}
+
+/* Sidebar hover effect */
 .navbar__sidenav ul li a:hover {
   background-color: #333;
+}
+
+/* Main content adjustment when sidebar expands */
+body.content-pushed {
+  margin-left: 500px;
+  transition: margin-left 0.3s ease;
 }
 
 /* Modal Styling for Login */
@@ -189,6 +210,7 @@ body {
   cursor: pointer;
 }
 
+/* Input Container Styling */
 .input-container {
   width: 100%;
   max-width: 380px; 
@@ -228,88 +250,79 @@ body {
   outline: none;
 }
 
-
-/* Ensure the form itself is centered */
+/* Form Styling */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
-
-/* Container for the checkbox and forgot password link */
+/* Remember and Forgot Password */
 .remember-forgot {
-display: flex;
-justify-content: space-between; 
-align-items: center;
-width: 80%;
-margin: auto;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 80%;
+  margin: auto;
 }
-
 
 /* Remember Me */
 .remember-me {
-display: flex;
-align-items: center;
-color: #ffffff;
-font-size: 10px;
-white-space: nowrap;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 10px;
+  white-space: nowrap;
 }
-
 
 .remember-me input {
-margin-right: 5px;
+  margin-right: 5px;
 }
-
 
 /* Forgot Password Link */
 .forgot-password {
-text-decoration: none;
-background-color: #33333300;
-color: #ffffff;
-font-weight: bold;
-font-size: 10px;
+  text-decoration: none;
+  background-color: #33333300;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10px;
 }
-
 
 .forgot-password:hover {
-background: transparent;
-color:#c9c5c5;
+  background: transparent;
+  color: #c9c5c5;
 }
-
 
 /* Modal Button */
 .modal button {
-width: 150px;
-border-radius: 3px;
-display: block;
-margin: 10px auto; /* Centers the button horizontally */
+  width: 150px;
+  border-radius: 3px;
+  display: block;
+  margin: 10px auto;
 }
 
-
-/* sign up */
-.signup-text{
+/* Sign up */
+.signup-text {
   font-size: 10px;
 }
 
-.signup-button{
+.signup-button {
   font-size: 10px;
 }
 
-
-.signup-button:hover{
+.signup-button:hover {
   background: transparent;
-  color:#c9c5c5;
+  color: #c9c5c5;
 }
+
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   .navbar__logo img {
-    width: 150px;
+    width: 150px;  /* Adjust logo size on small screens */
   }
 
   .navbar__links {
-    display: none;
+    display: none;  /* Hide links on small screens */
   }
 
   .navbar__menu-icon {
@@ -317,6 +330,26 @@ margin: 10px auto; /* Centers the button horizontally */
   }
 
   .navbar__sidenav {
-    width: 200px;
+    width: 200px;  /* Smaller sidebar on mobile */
   }
- }
+
+  /* When sidebar is expanded */
+  body.content-pushed {
+    margin-left: 200px;  /* Adjust content margin */
+  }
+
+  /* Show navbar links on mobile with toggle */
+  .navbar__links {
+    display: block;
+    margin-top: 50px;
+  }
+
+  .navbar__links li {
+    margin: 10px 0;
+  }
+
+  .navbar__links a {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
