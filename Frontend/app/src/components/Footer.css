@@ -1,11 +1,12 @@
 :root {
   --white: #fff;
+  margin-top: 60px;
 }
 
 .section {
   width: 100vw;
-  background: linear-gradient(to bottom, #000000, #555555);
-  padding: 2rem 0rem;
+  margin-bottom: 100px;
+  
 }
 
 .section ul {
@@ -29,6 +30,7 @@
 .section li {
   text-align: left;
   cursor: pointer;
+  
 }
 
 .section li a {
