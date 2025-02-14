@@ -1,15 +1,14 @@
-
 .flexBoxHorizontal {
-    display: flex;         
-    justify-content: center;  
-    align-items: center;      
-    gap: 18rem;
-  }
-  
-  .flexBoxHorizontal img {
-    width: 30rem; 
-    height: 30rem; 
-    object-fit: cover; 
-    
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  margin-top: 5vh;
+  margin-bottom: 10vh;
+}
+
+.flexBoxHorizontal img {
+  width: 25vw;
+  height: 25vw; 
+  object-fit: cover;
+}

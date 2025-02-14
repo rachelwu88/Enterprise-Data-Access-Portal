@@ -1,44 +1,85 @@
-// src/components/Navbar.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
+import sandwichIcon from './assets/sandwich-icon.png';
 import mailbox from './assets/mail.png';
 import lock from './assets/lock.png';
-import Signup from './SignUp';
+import Signup from './SignUp.jsx'; 
+import homeIcon from './assets/home-icon.png'; 
+import userIcon from './assets/user-icon.png';
+import reportIcon from './assets/report-icon.png';
+import featureIcon from './assets/features-icon.png';
+import supportIcon from './assets/support-icon.png';
+import settingsIcon from './assets/setting-icon.png';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isSignup, setIsSignup] = useState(false); // State to toggle between login and signup
+  const [isSignup, setIsSignup] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    const storedLoginState = localStorage.getItem('isLoggedIn');
+    if (storedLoginState === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
+  const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
     setIsModalOpen(false);
-    setIsSignup(false); // Reset to login view when modal closes
+    setIsSignup(false); 
   };
 
-  const toggleSignup = (signupState) => {
-    setIsSignup(signupState); // Toggle between login and signup
+  const toggleSignup = (signupState) => setIsSignup(signupState);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setIsLoggedIn(true);
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsModalOpen(false);
   };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+  };
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+    document.body.classList.toggle('content-pushed', !isSidebarOpen); // Change here
+  };
+  
 
   return (
-    <nav className="navbar">
-      <div className="navbar__logo">
-        <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
-      </div>
-      <div className="navbar__links">
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#support">Support</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div className="navbar__login">
-        <button onClick={openModal}>Login</button>
-      </div>
+    <>
+      <nav className="navbar">
+        <div className="navbar__left">
+          <div className="navbar__logo">
+            <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
+          </div>
+        </div>
 
+        <div className="navbar__center">
+          <ul className="navbar__links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#support">Support</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div className="navbar__right">
+          <div className="navbar__login">
+            {!isLoggedIn ? (
+              <button onClick={openModal}>Login</button>
+            ) : (
+              <button onClick={handleLogout}>Logout</button>
+            )}
+          </div>
+        </div>
+      </nav>
+
+      {/* Modal for login or signup */}
       {isModalOpen && (
         <div className="modal">
           {!isSignup ? (
@@ -48,7 +89,7 @@ const Navbar = () => {
               </div><br></br><br></br>
               <span className="modal__close" onClick={closeModal}>&times;</span>
               <h2>Login</h2>
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="input-container">
                   <img src={mailbox} alt="Email" className="mailbox-img" />
                   <input type="email" placeholder="Email" required /><br></br>
@@ -72,8 +113,25 @@ const Navbar = () => {
           )}
         </div>
       )}
-    </nav>
+
+      {/* Sidebar component */}
+      {isLoggedIn && (
+        <div className={`navbar__sidenav ${isSidebarOpen ? 'expanded' : ''}`}>
+          {/* Sandwich button to toggle sidebar */}
+          <div className="navbar__menu-icon" onClick={toggleSidebar}>
+            <img src={sandwichIcon} alt="Menu" />
+          </div>
+          <ul>
+            <li><a href="#home"><img src={homeIcon} alt="Home" /> Home</a></li>
+            <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
+            <li><a href="#report"><img src={reportIcon} alt="Report" /> Report</a></li>
+            <li><a href="#features"><img src={featureIcon} alt="Features" /> Features</a></li>
+            <li><a href="#support"><img src={supportIcon} alt="Support" /> Support</a></li>
+            <li><a href="#settings"><img src={settingsIcon} alt="Settings" /> Settings</a></li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
-
 export default Navbar;
