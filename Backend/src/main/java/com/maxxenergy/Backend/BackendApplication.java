@@ -1,6 +1,7 @@
 package com.maxxenergy.Backend;
 
 import com.maxxenergy.Backend.Controllers.UserRepo.User;
+import jakarta.annotation.PostConstruct;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,11 @@ public class BackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
+
 	@RestController
 	@RequestMapping("/api/auth")
 	public class AuthController {
+
 
 		@PostMapping("/login")
 		public ResponseEntity<?> login(@RequestBody User user ) {

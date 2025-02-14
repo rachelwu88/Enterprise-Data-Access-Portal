@@ -1,89 +1,100 @@
 package com.maxxenergy.Backend.Controllers.UserRepo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.maxxenergy.Backend.Controllers.SecurityRepo.Role;
+import jakarta.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
-@Entity // tells Hibernate to make a table out of this class
-public class User {
+@Entity
+@Table(name = "users")
+public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
     public User() {}
 
-    public User(String name, String email, String password) {
-        this.name = name;
+    public User(Long id, String firstname, String lastname, String email, String password, Role role) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.role = role;
     }
 
-    //getters
-    public String getName() {
-        return name;
-    }
-    public String getEmail() {
-        return email;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public Long getId() {
-        return id;
-    }
+    // Getters
+    public Long getId() { return id; }
+    public String getFirstname() { return firstname; }
+    public String getLastname() { return lastname; }
+    public String getEmail() { return email; }
+    public String getPassword() { return password; }
+    public Role getRole() { return role; }
 
+    // Setters
+    public void setId(Long id) { this.id = id; }
+    public void setFirstname(String firstname) { this.firstname = firstname; }
+    public void setLastname(String lastname) { this.lastname = lastname; }
+    public void setEmail(String email) { this.email = email; }
+    public void setPassword(String password) { this.password = password; }
+    public void setRole(Role role) { this.role = role; }
 
-    //setters
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
-     * Updates this user's profile information
-     * @param newName New name for the user
-     * @param newEmail New email for the user
-     */
-    public void updateProfile(String newName, String newEmail) {
-        this.name = newName;
+    // Update profile information
+    public void updateProfile(String newFirstname, String newLastname, String newEmail) {
+        this.firstname = newFirstname;
+        this.lastname = newLastname;
         this.email = newEmail;
     }
 
-    /**
-     * Checks if this user matches the provided email
-     * @param email Email to check
-     * @return true if this user has the provided email
-     */
-    public boolean hasEmail(String email) {
-        return this.email.equals(email);
+    // Validate email and password
+    public boolean hasEmail(String email) { return this.email.equals(email); }
+    public boolean validatePassword(String password) { return this.password.equals(password); }
+
+    // Check permissions
+    public boolean hasPermission(String permission) { return role.hasPermission(permission); }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return role.getPermissions().stream()
+                .map(SimpleGrantedAuthority::new)
+                .collect(Collectors.toList());
     }
 
-    /**
-     * Validates if the provided password matches this user's password
-     * @param password Password to check
-     * @return true if passwords match
-     */
-    public boolean validatePassword(String password) {
-        return this.password.equals(password);
-    }
+    @Override
+    public String getUsername() { return email; }
+
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+
+    @Override
+    public boolean isEnabled() { return true; }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
                 ", email='" + email + '\'' +
+                ", role=" + role +
                 '}';
     }
 }
-   
