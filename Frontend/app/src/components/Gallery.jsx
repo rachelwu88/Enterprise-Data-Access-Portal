@@ -1,5 +1,5 @@
 import './Gallery.css';
-export function Gallery() {
+export default function Gallery() {
   return (
     <div className="flexBoxHorizontal">
       <img src="/images/gallery1.jpg" alt="Gallery 1" />

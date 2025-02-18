@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom'; // Added Link - Saltanat
 import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
 import sandwichIcon from './assets/sandwich-icon.png';
@@ -64,7 +65,7 @@ const Navbar = () => {
           <ul className="navbar__links">
             <li><a href="#features">Features</a></li>
             <li><a href="#support">Support</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><Link to="/faq">FAQ</Link></li> {/* Changed from href to Link - Saltanat*/}
           </ul>
         </div>
 
