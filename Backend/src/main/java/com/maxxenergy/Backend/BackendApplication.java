@@ -17,28 +17,6 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@RestController
-	@RequestMapping("/api/auth")
-	public class AuthController {
 
-
-		@PostMapping("/login")
-		public ResponseEntity<?> login(@RequestBody User user ) {
-			// Implement authentication logic
-			return ResponseEntity.ok("User logged in successfully");
-		}
-
-		@PostMapping("/register")
-		public ResponseEntity<?> register(@RequestBody User user) {
-			// Implement user registration logic
-			return ResponseEntity.ok("User registered successfully");
-		}
-
-		@PostMapping("/logout")
-		public ResponseEntity<?> logout() {
-			// Implement logout logic
-			return ResponseEntity.ok("User logged out successfully");
-		}
-	}
 
 }

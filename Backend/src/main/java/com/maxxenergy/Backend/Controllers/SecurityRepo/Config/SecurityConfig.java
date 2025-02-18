@@ -3,6 +3,7 @@ package com.maxxenergy.Backend.Controllers.SecurityRepo.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -14,12 +15,13 @@ import java.util.List;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final AuthFilter authFilter;
     private final AuthenticationProvider authenticationProvider;
 
-    // ✅ Inject Dependencies
+    // Inject Dependencies
     public SecurityConfig(AuthFilter authFilter, AuthenticationProvider authenticationProvider) {
         this.authFilter = authFilter;
         this.authenticationProvider = authenticationProvider;
@@ -30,14 +32,14 @@ public class SecurityConfig {
         http
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(List.of("http://localhost:3000")); // Add your frontend domain
+                    config.setAllowedOrigins(List.of("http://localhost:3000")); // Add frontend domain
                     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
                     config.setAllowedHeaders(List.of("*"));
                     return config;
                 }))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**", "api/data/**").permitAll()
                         .requestMatchers("/api/demo-controller/sensitive").hasAuthority("READ_SENSITIVE")
                         .anyRequest().authenticated()
                 )

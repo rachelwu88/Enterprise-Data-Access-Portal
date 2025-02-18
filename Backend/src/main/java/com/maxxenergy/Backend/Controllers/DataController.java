@@ -1,6 +1,7 @@
 package com.maxxenergy.Backend.Controllers;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class DataController {
 
     //Endpoint to fetch all data
     @GetMapping("/all")
-//    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<Map<String, Object>> getAllData(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size){
         logger.info("Fetching all plant generation data (page={}, size={})");
 
@@ -36,7 +37,7 @@ public class DataController {
 
     //Get data by plant ID
     @GetMapping("/by-plant-id")
-//    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public List<Map<String, Object>> getDataByPlantId(@RequestParam int plantId, @RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "10") int size){
         logger.info("Fetching data for Plant ID: {}");
 
