@@ -18,10 +18,10 @@ body {
 
 /* Logo Styling */
 .navbar__logo img {
-  width: 190px;
+  width: 200px;
   height: auto;
   margin-top: 1px;
-  /* margin-left: 80px; */
+  margin-left: 80px;
 }
 
 /* Navbar Styling */
@@ -39,10 +39,10 @@ body {
   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(66,66,66,1) 73%, rgba(126,125,125,1) 100%);
   width: 100%;
 }
-
 /* Left Section (Logo + Menu) */
 .navbar__left {
   display: flex;
+  align-items: center;
 }
 .navbar__menu-icon {
   display: flex !important;
@@ -50,7 +50,6 @@ body {
   cursor: pointer;
   z-index: 9999;
   position: fixed;
-  left: 10px;
   top: 25px;
   background-color: transparent;
   padding: 10px;
@@ -77,7 +76,6 @@ body {
 .navbar__links li {
   margin-right: 20px;
   margin-top: 40px;
-  left: 60px;
 }
 .navbar__links a {
   color: white;
@@ -125,7 +123,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 95px;  /* Default collapsed width */
+  width: 85px;
   height: 100%;
   background-color: #000000;
   padding-top: 100px;
@@ -137,13 +135,15 @@ body {
 
 /* When the sidebar is expanded */
 .navbar__sidenav.expanded {
-  width: 500px; /* Expanded width */
+  width: 400px;
 }
 
 /* Sidebar Links - Initially visible in collapsed state */
 .navbar__sidenav ul {
   list-style: none;
+  text-decoration: none;
   padding-left: 0px;
+  text-align: center;
 }
 
 .navbar__sidenav ul li {
@@ -154,10 +154,12 @@ body {
   display: block;
   text-align: center;
   padding: 10px 10px;
+  text-decoration: none;
+  color: white;
 }
 
 .navbar__sidenav ul li a img {
-  width: 60px;  /* Adjust icon size */
+  width: 50px;
   height: auto;
 }
 
@@ -166,10 +168,43 @@ body {
   background-color: #333;
 }
 
-/* Main content adjustment when sidebar expands */
+/* sidebar expanded --pushed */
 body.content-pushed {
-  margin-left: 500px;
+  margin-left: 400px;
   transition: margin-left 0.3s ease;
+}
+/* Home Dropdown Styling */
+.navbar__links li.dropdown {
+  position: relative;
+}
+
+.navbar__links .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  min-width: 160px;
+  z-index: 1;
+}
+
+.navbar__links .dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.navbar__links .dropdown-content a:hover {
+  background-color: #444;
+}
+
+.navbar__links li:hover .dropdown-content {
+  display: block;
+}
+
+.navbar__links .dropdown-content .dropdown-item {
+  font-size: 14px;
+  padding-left: 30px; /* Add indentation */
 }
 
 /* Modal Styling for Login */
@@ -353,3 +388,4 @@ form {
     padding: 10px;
   }
 } 
+    

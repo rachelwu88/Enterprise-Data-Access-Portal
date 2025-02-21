@@ -3,12 +3,38 @@
   justify-content: center;
   align-items: center;
   gap: 5vw;
-  margin-top: 5vh;
-  margin-bottom: 10vh;
+  flex-wrap: wrap;
+  margin-top: 20vh;
+  margin-bottom: 20vh;
 }
 
 .flexBoxHorizontal img {
-  width: 25vw;
-  height: 25vw; 
+  width: 22%; /* Slightly bigger than before */
+  height: 22vw; /* Keeps them proportional */
+  max-width: 280px; /* Ensures they don't get too large */
+  max-height: 280px;
   object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { /* Laptops and tablets */
+  .flexBoxHorizontal img {
+    width: 28%;
+    height: 28vw;
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 768px) { /* Tablets and smaller screens */
+  .flexBoxHorizontal {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .flexBoxHorizontal img {
+    width: 80%;
+    height: auto; /* Maintain aspect ratio */
+    max-width: 240px;
+  }
 }
