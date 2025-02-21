@@ -1,0 +1,31 @@
+/* src/components/Hero.css */
+.hero {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 50vh;
+    height: calc(100vh - 10rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-top: -37px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) { /* Laptops and tablets */
+    .hero {
+        min-height: 45vh;
+        height: calc(100vh - 12rem);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 40vh;
+        height: auto; /* Adjusts naturally based on content */
+        padding: 20px; /* Adds breathing room */
+    }
+}
