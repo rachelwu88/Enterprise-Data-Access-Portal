@@ -1,5 +1,6 @@
 package com.maxxenergy.Backend.Controllers.UserRepo;
 
+import com.maxxenergy.Backend.Controllers.SecurityRepo.Role;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class UserManager {
      */
     public List<User> searchUsersByName(String searchTerm) {
         return users.stream()
-                .filter(user -> user.getName().toLowerCase().contains(searchTerm.toLowerCase()))
+                .filter(user -> user.getFirstname().toLowerCase().contains(searchTerm.toLowerCase()))
                 .collect(Collectors.toList());
     }
 
@@ -133,7 +134,7 @@ public class UserManager {
     public List<User> backupUsers() {
         List<User> backup = new ArrayList<>();
         for (User user : users) {
-            backup.add(new User(user.getName(), user.getEmail(), user.getPassword()));
+            backup.add(new User(user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword()));
         }
         return backup;
     }
@@ -193,4 +194,24 @@ public class UserManager {
         }
         return false;
     }
+    public boolean updateUserRole(String email, Role newRole) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            user.setRole(newRole);
+            return true; //Role successfully updated
+        }
+        return false; // User not found
+    }
+
+    public boolean updateUserDetails(String email, String newFirstname, String newLastname, String newEmail) {
+        User user = getUserByEmail(email);
+        if (user != null) {
+            user.setFirstname(newFirstname);
+            user.setLastname(newLastname);
+            user.setEmail(newEmail);
+            return true; // Successfully updated
+        }
+        return false; // User not found
+    }
+
 }
