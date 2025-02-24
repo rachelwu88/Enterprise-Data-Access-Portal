@@ -7,6 +7,7 @@ public enum Role {
     MANAGER(Set.of("READ_BASIC", "WRITE")),
     Admin(Set.of("READ_BASIC", "READ_SENSITIVE", "WRITE"));
 
+    public static Role ADMIN;
     private final Set<String> permissions;
 
     Role(Set<String> permissions){

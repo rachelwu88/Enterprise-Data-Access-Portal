@@ -24,6 +24,7 @@ public class User implements UserDetails {
     private String email;
     private String password;
 
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -39,10 +40,20 @@ public class User implements UserDetails {
         this.role = role;
     }
 
+    //ad
+
+
+
+
+
+
     public User(String name, String email, String password) {
         this.email = email;
         this.password = password;
 
+    }
+
+    public User(String firstname, String lastname, String email, String password) {
     }
 
 
@@ -71,6 +82,27 @@ public class User implements UserDetails {
     public void setPassword(String password) { this.password = password; }
 
     public void setRole(Role role) { this.role = role; }
+
+    // For admin role
+
+    //method to override user details
+
+
+
+    // ========== Formatting User Information ========== //
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
+
+
 
     // Update profile information
     public void updateProfile(String newFirstname, String newLastname, String newEmail) {
@@ -116,20 +148,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {return true;}
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", role=" + role +
-                '}';
-    }
-
-    public String getName() {
-        return setName("");
-    }
 
     public String setName(String name) {
         String[] fullName = name.split(" ", 2);

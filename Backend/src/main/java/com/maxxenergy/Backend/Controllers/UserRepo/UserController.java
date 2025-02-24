@@ -1,6 +1,8 @@
 package com.maxxenergy.Backend.Controllers.UserRepo;
 
+import com.maxxenergy.Backend.Controllers.SecurityRepo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +38,8 @@ public class UserController {
         if (currentUser.isPresent()) {
             User user = currentUser.get();
             user.setEmail(userDetails.getEmail());
-            user.setName((userDetails.getName()));
+            user.setName((userDetails.getFirstname()));
+            user.setName(userDetails.getLastname());
             user.setPassword(userDetails.getPassword());
             userRepository.save(user);
             return ResponseEntity.ok(user);
@@ -85,6 +88,55 @@ public class UserController {
         }
         return ResponseEntity.badRequest().body("User not found");
     }
+
+    @PutMapping("/admin/update-role")
+    public ResponseEntity<String> updateUserRole(
+            @RequestParam String email,
+            @RequestParam Role newRole) {
+
+        boolean updated = userManager.updateUserRole(email, newRole);
+        if (updated) {
+            return ResponseEntity.ok("User role updated successfully!");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(" User not found.");
+    }
+
+    @PutMapping("/admin/update-user")
+    public ResponseEntity<String> updateUserDetails(
+            @RequestParam String email,
+            @RequestParam String newFirstname,
+            @RequestParam String newLastname,
+            @RequestParam String newEmail) {
+
+        boolean updated = userManager.updateUserDetails(email, newFirstname, newLastname, newEmail);
+        if (updated) {
+            return ResponseEntity.ok("User details updated successfully!");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+    }
+
+    @PutMapping("/admin/update-user")
+    public ResponseEntity<String> updateUserDetails(
+            @RequestParam String adminEmail,  // Admin's email
+            @RequestParam String email,
+            @RequestParam String newFirstname,
+            @RequestParam String newLastname,
+            @RequestParam String newEmail) {
+
+        User admin = userManager.getUserByEmail(adminEmail);
+
+        if (admin == null || !admin.getRole().equals(Role.ADMIN)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied: Admin rights required.");
+        }
+
+        boolean updated = userManager.updateUserDetails(email, newFirstname, newLastname, newEmail);
+        if (updated) {
+            return ResponseEntity.ok("User details updated successfully!");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+    }
+
+
 }
 
 
