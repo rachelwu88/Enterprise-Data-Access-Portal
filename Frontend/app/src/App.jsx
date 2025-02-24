@@ -1,15 +1,15 @@
-import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom"; // ✅ Import Router
-import Navbar from "./Navbar"; 
-import Gallery from "./components/Gallery";
+import Navbar from "./Navbar";
 import Hero from "./components/Hero";
-import Footer from "./components/Footer";
+import Gallery from "./components/Gallery";
+import Features from "./components/Features";
 import FAQ from "./components/FAQ";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <Router> {/* ✅ Wrap in Router */}
+    <Router>
       <Navbar />
       <Routes>
         <Route path="/" element={
@@ -22,11 +22,16 @@ function App() {
               </p>
             </div>
             <Gallery />
+            <Footer />
           </>
         } />
-        <Route path="/faq" element={<FAQ />} /> {/* ✅ Separate FAQ page */}
+
+        {/* Features page */}
+        <Route path="/features" element={<Features />} />
+
+        {/* FAQ page */}
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
-      <Footer />
     </Router>
   );
 }

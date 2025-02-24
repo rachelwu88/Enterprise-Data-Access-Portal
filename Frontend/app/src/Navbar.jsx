@@ -65,7 +65,7 @@ const Navbar = () => {
 
         <div className="navbar__center">
           <ul className="navbar__links">
-            <li><a href="#features">Features</a></li>
+            <li><Link to="/features">Features</Link></li>
             <li><a href="#support">Support</a></li>
             <li><Link to="/faq">FAQ</Link></li>
           </ul>
@@ -129,8 +129,8 @@ const Navbar = () => {
             <li><Link to="/"><img src={homeIcon} alt="Home" /> Home</Link></li>
             <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
             <li><a href="#report"><img src={reportIcon} alt="Report" /> Report</a></li>
-            <li><a href="#features"><img src={featureIcon} alt="Features" /> Features</a></li>
-            <li><a href="#support"><img src={supportIcon} alt="Support" /> Support</a></li>
+            <li><Link to="/features"><img src={featureIcon} alt="Features" /> Features</Link></li>
+            <li><Link to="/faq"><img src={supportIcon} alt="Support" /> Support</Link></li>
             <li><a href="#settings"><img src={settingsIcon} alt="Settings" /> Settings</a></li>
           </ul>
         </div>
