@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
 import Features from "./components/Features";
+import Contact from "./ContactUs";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
@@ -28,6 +29,9 @@ function App() {
 
         {/* Features page */}
         <Route path="/features" element={<Features />} />
+
+        {/* Contact page */}
+        <Route path="/contact" element={<Contact />} />
 
         {/* FAQ page */}
         <Route path="/faq" element={<FAQ />} />

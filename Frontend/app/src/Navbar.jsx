@@ -66,7 +66,7 @@ const Navbar = () => {
         <div className="navbar__center">
           <ul className="navbar__links">
             <li><Link to="/features">Features</Link></li>
-            <li><a href="#support">Support</a></li>
+            <li><Link to="/contact">Contact</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
           </ul>
         </div>
@@ -130,6 +130,7 @@ const Navbar = () => {
             <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
             <li><a href="#report"><img src={reportIcon} alt="Report" /> Report</a></li>
             <li><Link to="/features"><img src={featureIcon} alt="Features" /> Features</Link></li>
+            <li><Link to="/contact"><img src={featureIcon} alt="Contact" /> Contact</Link></li>
             <li><Link to="/faq"><img src={supportIcon} alt="Support" /> Support</Link></li>
             <li><a href="#settings"><img src={settingsIcon} alt="Settings" /> Settings</a></li>
           </ul>
