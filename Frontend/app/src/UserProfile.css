@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap');
+
+body {
+  background-color: #111;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+img {
+    width: 300px; /* Adjust as needed */
+    height: 200px; /* Adjust as needed */
+}
+
+/* Background Image Section */
+.outer-container {
+    position: relative;
+    width: 100%;
+    height: 25vh; /* Set height to 1/4th of the page height */
+    overflow: hidden;
+  }
+  
+  .profile-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(50%);
+  }
+  
+  .profile-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem; /* Adjust font size to fit better */
+    font-weight: 200;
+    text-align: center;
+    width: 100%;
+    color: white;
+  }
+  
+  /* Profile Section */
+  .max-w-2xl {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-image-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .profile-image-container img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+  }
+  
+  .edit-profile-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #333;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+/* Account Settings */
+.bg-black {
+  background-color: #222;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #444;
+  padding: 15px 0;
+}
+
+.setting-item p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+/* Input Fields */
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #111;
+  color: white;
+}
+
+.btn {
+  width: 100%;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Links */
+a {
+  color: #00aaff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .profile-title {
+    font-size: 2rem;
+  }
+  
+  .max-w-2xl {
+    padding: 15px;
+  }
+
+  .input-field {
+    padding: 8px;
+  }
+
+  .btn {
+    padding: 8px;
+  }
+}

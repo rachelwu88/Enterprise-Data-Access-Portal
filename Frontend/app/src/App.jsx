@@ -6,6 +6,7 @@ import Gallery from "./components/Gallery";
 import Features from "./components/Features";
 import Report from "./components/Report";
 import Contact from "./ContactUs";
+import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 
@@ -33,7 +34,8 @@ function App() {
 
         {/* Contact page */}
         <Route path="/contact" element={<Contact />} />
-
+        {/* User page */}
+        <Route path="/user" element={<User />} /> 
         {/* Report page */}
         <Route path="/report" element={<Report />} />
 

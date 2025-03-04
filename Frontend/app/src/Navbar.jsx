@@ -163,7 +163,7 @@ const Navbar = () => {
                 )}
               </div>
             </li>
-            <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
+            <li><Link to="/user"><img src={userIcon} alt="User" /> User</Link></li>
             <li><Link to="/report"><img src={reportIcon} alt="Report" /> Report</Link></li>
             <li><Link to="/features"><img src={featureIcon} alt="Features" /> Features</Link></li>
             <li><Link to="/contact"><img src={supportIcon} alt="Support" /> Support</Link></li>
