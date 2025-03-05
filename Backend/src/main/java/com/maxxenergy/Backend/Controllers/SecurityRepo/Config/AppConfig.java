@@ -1,9 +1,12 @@
 package com.maxxenergy.Backend.Controllers.SecurityRepo.Config;
 
 
+import com.maxxenergy.Backend.Controllers.Audits.AuditorAwareImpl;
+import com.maxxenergy.Backend.Controllers.Audits.UserAudit;
 import com.maxxenergy.Backend.Controllers.UserRepo.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -35,6 +38,11 @@ public class AppConfig {
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
+    }
+
+    @Bean
+    public AuditorAware<String> auditorAware(){
+        return new AuditorAwareImpl();
     }
 
     @Bean

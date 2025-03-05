@@ -15,7 +15,7 @@ public class AuthService {
 
     private final String secretKey;
 
-    // ✅ Inject secret key from AppConfig Bean
+    // Inject secret key from AppConfig Bean
     public AuthService(String jwtSecretKey) {
         this.secretKey = jwtSecretKey;
     }
