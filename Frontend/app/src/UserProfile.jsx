@@ -1,112 +1,198 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // For internal navigation
 import Navbar from "./Navbar";
 import Footer from "./components/Footer";
 import "./UserProfile.css";
-import heroImage from "./assets/hero-image.jpeg"; // Corrected path
-import { Lock, Plus, Minus } from "lucide-react";
+import heroImage from "./assets/hero-image.jpeg";
+import defaultProfilePic from "./assets/default-profile.jpg"; // Imported default profile image
+import { Plus, Minus,Lock, Unlock } from 'react-feather';
 
-const UserProfile = ({ isAdmin }) => {
-  const [editProfilePic, setEditProfilePic] = useState(false);
+const UserProfile = ({ isAdmin, isLoggedIn, user }) => {
+  // Default user if no user is provided
+  const defaultUser = {
+    name: "Default User",
+    role: "ROLE",
+    email: "default@example.com",
+    profilePic: defaultProfilePic,
+  };
+
+  const currentUser = user || defaultUser;
+
+  // State for collapsible sections
   const [showPassword, setShowPassword] = useState(false);
   const [showRecovery, setShowRecovery] = useState(false);
-  const [adminUnlocked, setAdminUnlocked] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  // Profile picture handling
+  const [editProfilePic, setEditProfilePic] = useState(false);
+  const [currentProfilePic, setCurrentProfilePic] = useState(currentUser.profilePic);
+
+  const handleProfilePicChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setCurrentProfilePic(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setCurrentProfilePic(currentUser.profilePic);
+    }
+  };
 
   return (
     <>
       <Navbar />
 
-      {/* Background Image Section */}
-      <div className="relative flex items-center justify-center h-48 bg-black">
-        <img src={heroImage} alt="User Profile Background" className="absolute inset-0 w-full h-full object-cover opacity-50" />
-        <h1 className="relative z-10 text-white text-3xl font-bold">User Profile</h1>
-      </div>
+      <div className="main-content">
+        {/* Hero Section */}
+        <div
+          className="hero-section"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+          }}
+        ></div>
 
-      {/* Profile Section */}
-      <div className="max-w-2xl mx-auto text-white mt-6">
-        <div className="relative flex items-center gap-6 p-6 bg-gray-900 shadow-md rounded-lg">
-          <div className="relative">
-            <img src="/images/profile.jpg" alt="User" className="w-24 h-24 rounded-full border-4 border-gray-700 shadow-lg" />
-            <button 
-              onClick={() => setEditProfilePic(!editProfilePic)}
-              className="absolute bottom-2 right-2 bg-gray-800 p-1 rounded-full text-sm"
-            >
-              ✎
-            </button>
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold">User Name</h2>
-            <p className="text-sm text-gray-400">User Role</p>
-            <p className="text-sm text-gray-400">user@maxxenergy.com</p>
-          </div>
-        </div>
-
-        {/* Account Settings */}
-        <div className="bg-gray-800 p-6 rounded-lg shadow-lg space-y-6 mt-6">
-          
-          {/* Password Management */}
-          <div>
-            <div className="flex justify-between items-center border-b border-gray-600 pb-2">
-              <p>Change Password</p>
-              <button onClick={() => setShowPassword(!showPassword)} className="toggle-btn">
-                {showPassword ? <Minus size={20} /> : <Plus size={20} />}
+        {/* Profile Container */}
+        <div className="profile-container">
+          <div className="profile-wrapper">
+            <div className="profile-image-container">
+              <img src={currentProfilePic} alt="Profile" className="profile-pic" />
+              <button
+                onClick={() => setEditProfilePic(!editProfilePic)}
+                className="edit-pic-btn"
+                aria-label="Edit Profile Picture"
+              >
+                ✎
               </button>
+              {editProfilePic && (
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleProfilePicChange}
+                  className="profile-file-input"
+                />
+              )}
             </div>
-            {showPassword && (
-              <div className="mt-2 space-y-2">
-                <input type="password" placeholder="New Password" className="input-field" />
-                <input type="password" placeholder="Confirm Password" className="input-field" />
-                <button className="btn">Update Password</button>
-              </div>
-            )}
-          </div>
-
-          {/* Recovery Email */}
-          <div>
-            <div className="flex justify-between items-center border-b border-gray-600 pb-2">
-              <p>Add/Update Recovery Email</p>
-              <button onClick={() => setShowRecovery(!showRecovery)} className="toggle-btn">
-                {showRecovery ? <Minus size={20} /> : <Plus size={20} />}
-              </button>
+            <div className="profile-info">
+              <h2 className="profile-name">{currentUser.name}</h2>
+              <p className="profile-role">{currentUser.role}</p>
+              <p className="profile-email">{currentUser.email}</p>
             </div>
-            {showRecovery && (
-              <div className="mt-2 space-y-2">
-                <input type="email" placeholder="Recovery Email" className="input-field" />
-                <button className="btn">Update Email</button>
-              </div>
-            )}
           </div>
 
-          {/* Links */}
-          <div className="border-b border-gray-600 pb-2">
-            <a href="/notification-preferences" className="text-blue-400">Notification Preferences</a>
-          </div>
-          <div className="border-b border-gray-600 pb-2">
-            <a href="/downloaded-documents" className="text-blue-400">Downloaded Documents</a>
-          </div>
-
-          {/* Admin Section */}
-          {isAdmin && (
-            <div>
-              <div className="flex justify-between items-center border-b border-gray-600 pb-2">
-                <p>Admin Only</p>
-                <button onClick={() => setAdminUnlocked(!adminUnlocked)} className="toggle-btn">
-                  {adminUnlocked ? <Minus size={20} /> : <Lock size={20} />}
+          {/* Account Settings / Collapsible Sections */}
+          <div className="account-settings">
+            {/* Password Management */}
+            <div className="collapsible-section">
+              <div className="section-header">
+                <span>Password Management</span>
+                <button
+                  className="toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label="Toggle Password Management"
+                >
+                  {showPassword ? <Minus size={20} /> : <Plus size={20} />}
                 </button>
               </div>
-              {adminUnlocked && (
-                <div className="mt-2 space-y-2">
-                  <a href="/user-management" className="text-blue-400">User Management</a>
-                  <a href="/audit-logs" className="text-blue-400">Audit Logs</a>
+              {showPassword && (
+                <div className="section-content">
+                  <Link to="/change-password" className="section-link">
+                    Change Password
+                  </Link>
                 </div>
               )}
             </div>
-          )}
+            <hr className="section-divider" />
+
+            {/* Account Recovery */}
+            <div className="collapsible-section">
+              <div className="section-header">
+                <span>Account Recovery</span>
+                <button
+                  className="toggle-btn"
+                  onClick={() => setShowRecovery(!showRecovery)}
+                  aria-label="Toggle Account Recovery"
+                >
+                  {showRecovery ? <Minus size={20} /> : <Plus size={20} />}
+                </button>
+              </div>
+              {showRecovery && (
+                <div className="section-content">
+                  <Link to="/update-recovery-email" className="section-link">
+                    Add/Update Recovery Email
+                  </Link>
+                </div>
+              )}
+            </div>
+            <hr className="section-divider" />
+
+            {/* Notification Preferences (Always Visible) */}
+            <div className="collapsible-section">
+              <div className="section-header">
+                <Link to="/notification-preferences" className="section-link">
+                  Notification Preferences
+                </Link>
+              </div>
+            </div>
+            <hr className="section-divider" />
+
+            {/* Downloaded Documents (Always Visible) */}
+            <div className="collapsible-section">
+              <div className="section-header">
+                <Link to="/downloaded-documents" className="section-link">
+                  Downloaded Documents
+                </Link>
+              </div>
+            </div>
+            <hr className="section-divider" />
+
+            {/* Admin Only Section */}
+            {isLoggedIn && isAdmin && (
+              <div className="collapsible-section">
+                <div className="section-header">
+                  <span>Admin Only</span>
+                  <button
+                    className="toggle-btn"
+                    onClick={() => setShowAdmin(!showAdmin)}
+                    aria-label="Toggle Admin Only Section"
+                  >
+                    {showAdmin ? <Unlock size={20} /> : <Lock size={20} />}
+                  </button>
+                </div>
+                {showAdmin && (
+                  <div className="section-content">
+                    <Link to="/user-management" className="section-link">
+                      User Management
+                    </Link>
+                    <div className="section-content">
+                      <Link to="/audit-logs" className="section-link">
+                        Audit Logs
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Admin Test Section */}
+            {isLoggedIn && isAdmin && (
+              <div className="admin-test-message">
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
       <Footer />
     </>
   );
+};
+
+// For testing, let's simulate logged-in admin and non-admin states
+UserProfile.defaultProps = {
+  isAdmin: true, // Set to true for testing admin view, change to false to test regular user view
+  isLoggedIn: true, // Set to true for testing logged-in state, change to false to test logged-out view
 };
 
 export default UserProfile;

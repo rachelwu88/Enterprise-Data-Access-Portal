@@ -9,6 +9,7 @@ import Contact from "./ContactUs";
 import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import Password from "./ChangePassword";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
 
         {/* Features page */}
         <Route path="/features" element={<Features />} />
-
+        {/* Change Password page */}
+        <Route path="/change-password" element={<Password />} />
         {/* Contact page */}
         <Route path="/contact" element={<Contact />} />
         {/* User page */}
