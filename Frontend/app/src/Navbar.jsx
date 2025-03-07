@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link, useLocation } from 'react-router-dom'; 
 import './Navbar.css';
 import logo from './assets/maxx-energy-logo.png';
 import sandwichIcon from './assets/sandwich-icon.png';
@@ -18,6 +18,8 @@ const Navbar = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null); // State for the active dropdown
+  const location = useLocation(); // Get current route path
 
   useEffect(() => {
     const storedLoginState = localStorage.getItem('isLoggedIn');
@@ -25,6 +27,20 @@ const Navbar = () => {
       setIsLoggedIn(true);
     }
   }, []);
+
+  useEffect(() => {
+    // Ensure sidebar is closed when navigating to a different page
+    setIsSidebarOpen(false);
+    document.body.classList.remove('content-pushed'); // Ensure content is reset when navigating
+  }, [location]);
+
+  const toggleDropdown = (dropdownId) => {
+    if (isSidebarOpen && activeDropdown === dropdownId) {
+      setActiveDropdown(null); // Close the active dropdown if clicked again
+    } else {
+      setActiveDropdown(dropdownId); // Open the new dropdown and close others
+    }
+  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
@@ -51,13 +67,18 @@ const Navbar = () => {
     document.body.classList.toggle('content-pushed', !isSidebarOpen);
   };
 
+  const handleHomeClick = () => {
+    if (isSidebarOpen) {
+      toggleSidebar(); // Collapse the sidebar when home is clicked
+    }
+  };
+
   return (
     <>
       <nav className="navbar">
         <div className="navbar__left">
           <div className="navbar__logo">
-            {/* Updated: Wrap logo in Link to navigate to home */}
-            <Link to="/">
+            <Link to="/" onClick={handleHomeClick}>
               <img src={logo} alt="MAXX ENERGY" className="navbar-logo" />
             </Link>
           </div>
@@ -66,7 +87,7 @@ const Navbar = () => {
         <div className="navbar__center">
           <ul className="navbar__links">
             <li><Link to="/features">Features</Link></li>
-            <li><a href="#support">Support</a></li>
+            <li><Link to="/contact">Support</Link></li>
             <li><Link to="/faq">FAQ</Link></li>
           </ul>
         </div>
@@ -82,7 +103,6 @@ const Navbar = () => {
         </div>
       </nav>
 
-      {/* Modal for login or signup */}
       {isModalOpen && (
         <div className="modal">
           {!isSignup ? (
@@ -117,20 +137,36 @@ const Navbar = () => {
         </div>
       )}
 
-      {/* Sidebar component */}
       {isLoggedIn && (
         <div className={`navbar__sidenav ${isSidebarOpen ? 'expanded' : ''}`}>
-          {/* Sandwich button to toggle sidebar */}
           <div className="navbar__menu-icon" onClick={toggleSidebar}>
             <img src={sandwichIcon} alt="Menu" />
           </div>
           <ul>
-            {/* Updated: Wrap Home icon in Link to navigate to home */}
-            <li><Link to="/"><img src={homeIcon} alt="Home" /> Home</Link></li>
-            <li><a href="#user"><img src={userIcon} alt="User" /> User</a></li>
-            <li><a href="#report"><img src={reportIcon} alt="Report" /> Report</a></li>
+            <li>
+              <div className="dropdown">
+                <div className="dropdown-header" onClick={() => isSidebarOpen && toggleDropdown('homeDropdown')}>
+                  <Link to="/" onClick={handleHomeClick}>
+                    <img src={homeIcon} alt="Home" /> Home
+                  </Link>
+                  <div className="triangle-container">
+                    <div className={`triangle ${activeDropdown === 'homeDropdown' ? 'rotated' : ''}`}></div>
+                  </div>
+                </div>
+                {activeDropdown === 'homeDropdown' && isSidebarOpen && (
+                  <ul className="dropdown-menu">
+                    <li><Link to="/home/Comparison">Comparison Page</Link></li>
+                    <li><Link to="/home/Performance">Performance Metrics</Link></li>
+                    <li><Link to="/home/DataSearch">Data Search & API Access</Link></li>
+                    <li><Link to="/home/DataExport">Data Export & Download</Link></li>
+                  </ul>
+                )}
+              </div>
+            </li>
+            <li><Link to="/user"><img src={userIcon} alt="User" /> User</Link></li>
+            <li><Link to="/report"><img src={reportIcon} alt="Report" /> Report</Link></li>
             <li><Link to="/features"><img src={featureIcon} alt="Features" /> Features</Link></li>
-            <li><Link to="/faq"><img src={supportIcon} alt="Support" /> Support</Link></li>
+            <li><Link to="/contact"><img src={supportIcon} alt="Support" /> Support</Link></li>
             <li><a href="#settings"><img src={settingsIcon} alt="Settings" /> Settings</a></li>
           </ul>
         </div>

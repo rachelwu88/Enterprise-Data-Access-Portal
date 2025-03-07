@@ -4,8 +4,12 @@ import Navbar from "./Navbar";
 import Hero from "./components/Hero";
 import Gallery from "./components/Gallery";
 import Features from "./components/Features";
+import Report from "./components/Report";
+import Contact from "./ContactUs";
+import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
+import Password from "./ChangePassword";
 
 function App() {
   return (
@@ -28,6 +32,14 @@ function App() {
 
         {/* Features page */}
         <Route path="/features" element={<Features />} />
+        {/* Change Password page */}
+        <Route path="/change-password" element={<Password />} />
+        {/* Contact page */}
+        <Route path="/contact" element={<Contact />} />
+        {/* User page */}
+        <Route path="/user" element={<User />} /> 
+        {/* Report page */}
+        <Route path="/report" element={<Report />} />
 
         {/* FAQ page */}
         <Route path="/faq" element={<FAQ />} />

@@ -1,39 +1,44 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
+import Navbar from "../Navbar"; // Import Navbar
+import Footer from "./Footer"; // Import Footer
 import "./FAQ.css";
 
 const faqData = [
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
+    question: "How do I sign up for Maxx Energy portal?",
     answer:
-      "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+      "To sign up, click the 'Sign Up' button on the homepage and follow the instructions to create your account.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
+    question: "What services does Maxx Energy provide?",
     answer:
-      "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      "Maxx Energy provides energy solutions, including solar power, wind energy, and sustainable home energy systems.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
-    answer: "Excepteur sint occaecat cupidatat non proident.",
+    question: "How do I track my energy usage?",
+    answer:
+      "You can track your energy usage by logging into your account and navigating to the 'Usage' section, where you'll find detailed reports.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    question: "Can I pay my energy bill online?",
+    answer:
+      "Yes, you can pay your energy bill online through the 'Billing' section in your Maxx Energy account. We accept various payment methods.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
-    answer: "Excepteur sint occaecat cupidatat non proident.",
+    question: "What is the Maxx Energy rewards program?",
+    answer:
+      "The Maxx Energy rewards program allows you to earn points for every dollar spent on energy services. These points can be redeemed for discounts or special offers.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
-    answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    question: "How do I contact customer support?",
+    answer:
+      "You can reach our customer support team by visiting the 'Contact Us' section of the website, where you'll find our phone number, email, and live chat options.",
   },
   {
-    question: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed?",
-    answer: "Excepteur sint occaecat cupidatat non proident.",
+    question: "How do I update my account details?",
+    answer:
+      "To update your account details, log in to your account, go to the 'Account Settings' page, and update your information as needed.",
   },
-  
-  
 ];
 
 function FAQ() {
@@ -45,6 +50,7 @@ function FAQ() {
 
   return (
     <>
+      <Navbar /> {/* Add Navbar here */}
       {/* Background Image Section */}
       <div className="outer-container">
         <img src="/images/faq.jpg" alt="FAQ Section" className="faq-image" />
@@ -63,6 +69,8 @@ function FAQ() {
           </div>
         ))}
       </div>
+
+      <Footer /> {/* Add Footer here */}
     </>
   );
 }
