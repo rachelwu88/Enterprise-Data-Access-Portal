@@ -2,7 +2,6 @@ package com.maxxenergy.Backend.Controllers.SecurityRepo.Config;
 
 
 import com.maxxenergy.Backend.Controllers.Audits.AuditorAwareImpl;
-import com.maxxenergy.Backend.Controllers.Audits.UserAudit;
 import com.maxxenergy.Backend.Controllers.UserRepo.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
