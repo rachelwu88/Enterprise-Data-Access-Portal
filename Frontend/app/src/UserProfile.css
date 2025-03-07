@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Body: Remove vertical centering */
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-top: -150px;
+  width: 100%;
+  height: 500px; /* Hero section height */
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  position: relative;
+}
+
+/* Profile Container: Positioned to overlap the hero section */
+.profile-container {
+  width: 100%;
+  max-width: 768px;
+  padding: 1rem;
+  text-align: center;
+  margin: -350px auto 200px auto; /* Top: -400px, Right: auto, Bottom: 200px, Left: auto */
+  position: relative;
+  z-index: 2;
+}
+
+/* Profile Wrapper: Stack elements vertically */
+.profile-wrapper {
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin: 0 auto 1.5rem auto; /* Center horizontally */
+  width: 100%;
+}
+
+/* Profile Image Container */
+.profile-image-container {
+  position: relative;
+  width: 8rem; 
+  height: 8rem;
+  margin: 0 auto;
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2d3748;
+}
+/* Edit Profile Picture Button */
+.edit-pic-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background-color: #232323;
+  color: #fff;
+  border: none;
+  width: 2rem; 
+  height: 2rem; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Hide file input but make it clickable */
+.profile-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profile-info {
+  text-align: center;
+  font-weight: 400;
+}
+.profile-name {
+  font-size: 1.5rem;
+  margin-bottom: -20px;
+
+}
+.profile-role {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #cbd5e0;
+  margin-bottom: -20px;
+}
+.profile-email {
+  font-size: 1rem;
+  color: #cbd5e0;
+  font-weight: 400;
+}
+/* Account Settings */
+.account-settings {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  width: 100%;
+  max-width: 768px;
+  margin: 6rem auto 0 auto;
+}
+
+/* Collapsible Sections */
+.collapsible-section {
+  margin-bottom: 1rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+/* Make sure the toggle button is properly styled and the icons are centered */
+.toggle-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+/* Ensure the icons are appropriately sized */
+.toggle-btn svg {
+  width: 30px;   /* Adjust this size as needed */
+  height: 30px;  /* Adjust this size as needed */
+  color: #fff;   /* Ensure visibility on dark background */
+}
+
+/* Optional: Add hover effect to the button */
+.toggle-btn:hover svg {
+  color: hsl(0, 0%, 96%); /* Change to a color of your choice */
+}
+
+.section-content {
+  padding: 0.5rem 0;
+}
+
+.section-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #4a5568;
+  margin: 1rem 0;
+}
+
+/* Responsive Styles for Smaller Screens */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1rem;
+  }
+  .profile-wrapper {
+    padding: 1rem;
+  }
+  .profile-image-container {
+    width: 5rem;
+    height: 5rem;
+  }
+  .profile-name {
+    font-size: 1.25rem;
+  }
+  .profile-role,
+  .profile-email {
+    font-size: 0.9rem;
+  }
+  .section-header,
+  .section-link {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-image-container {
+    width: 4rem;
+    height: 4rem;
+  }
+  .profile-name {
+    font-size: 1rem;
+  }
+  .profile-role,
+  .profile-email {
+    font-size: 0.8rem;
+  }
+  .toggle-btn {
+    font-size: 0.8rem;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: #1a202c;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+}

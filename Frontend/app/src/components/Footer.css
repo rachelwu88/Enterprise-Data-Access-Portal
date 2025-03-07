@@ -4,19 +4,22 @@
 }
 
 .section {
-  width: 100vw;
+  width: 100%;
   margin-bottom: 100px;
-  
+  padding: 0 2rem;
 }
 
 .section ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .flex {
   display: flex;
   justify-content: center;
   align-content: center;
+  flex-wrap: wrap;
 }
 
 .flex--small-gap {
@@ -30,7 +33,8 @@
 .section li {
   text-align: left;
   cursor: pointer;
-  
+  width: 100%;
+  margin-bottom: 1rem;
 }
 
 .section li a {
@@ -38,4 +42,34 @@
   font-size: 0.8rem;
   font-weight: 400;
   color: var(--white);
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 0 5rem;
+  }
+
+  .section li {
+    width: auto;
+    margin-bottom: 0;
+  }
+
+  .flex {
+    flex-wrap: nowrap;
+  }
+
+  .section li a {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .flex--small-gap {
+    gap: 1.5rem;
+  }
+
+  .flex--large-gap {
+    gap: 3rem;
+  }
 }
