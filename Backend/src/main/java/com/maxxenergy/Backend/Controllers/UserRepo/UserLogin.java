@@ -1,5 +1,7 @@
 package com.maxxenergy.Backend.Controllers.UserRepo;
 
+import java.util.Optional;
+
 public class UserLogin {
 
     private final UserManager userManager;
@@ -9,15 +11,11 @@ public class UserLogin {
     }
 
     public boolean login(String email, String password){
-        User user = userManager.getUserByEmail(email);
+        Optional<User> user = userManager.getUserByEmail(email);
 
         if (user == null){
             System.out.println("User not found");
             return false;
-        }
-        if (password.equals(user.getPassword())){
-            System.out.println("Login successful!");
-            return true;
         }
         else {
             System.out.println("Incorrect password");

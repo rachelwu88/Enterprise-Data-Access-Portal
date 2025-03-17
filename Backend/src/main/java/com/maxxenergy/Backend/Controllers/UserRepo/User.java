@@ -2,10 +2,10 @@ package com.maxxenergy.Backend.Controllers.UserRepo;
 
 import com.maxxenergy.Backend.Controllers.SecurityRepo.Role;
 import jakarta.persistence.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -13,56 +13,42 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "ex_users")
+@EntityListeners(AuditingEntityListener.class)
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String email;
     private String password;
-
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    public User() {
-    }
+    public User(){}
 
-    public User(Long id, String firstname, String lastname, String email, String password, Role role) {
+    public User(Long id, String firstName, String lastName, String email, String password, Role role) {
         this.id = id;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    //ad
-
-
-
-
-
-
-    public User(String name, String email, String password) {
-        this.email = email;
-        this.password = password;
-
-    }
-
-    public User(String firstname, String lastname, String email, String password) {
+    public User(String firstName, String lastName, String email, String password) {
     }
 
 
     // Getters
     public Long getId() { return id; }
 
-    public String getFirstname() { return firstname; }
+    public String getFirstName() { return firstName; }
 
-    public String getLastname() { return lastname; }
+    public String getLastName() { return lastName; }
 
     public String getEmail() { return email; }
 
@@ -73,9 +59,9 @@ public class User implements UserDetails {
     // Setters
     public void setId(Long id) { this.id = id; }
 
-    public void setFirstname(String firstname) { this.firstname = firstname; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public void setLastname(String lastname) { this.lastname = lastname; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
     public void setEmail(String email) { this.email = email; }
 
@@ -94,8 +80,8 @@ public class User implements UserDetails {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", firstname='" + firstName + '\'' +
+                ", lastname='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", role=" + role +
                 '}';
@@ -106,8 +92,8 @@ public class User implements UserDetails {
 
     // Update profile information
     public void updateProfile(String newFirstname, String newLastname, String newEmail) {
-        this.firstname = newFirstname;
-        this.lastname = newLastname;
+        this.firstName = newFirstname;
+        this.lastName = newLastname;
         this.email = newEmail;
     }
 
@@ -151,8 +137,9 @@ public class User implements UserDetails {
 
     public String setName(String name) {
         String[] fullName = name.split(" ", 2);
-        this.firstname = fullName[0];
-        this.lastname = fullName[1];
+        this.firstName = fullName[0];
+        this.lastName = fullName[1];
         return name;
     }
+
 }
