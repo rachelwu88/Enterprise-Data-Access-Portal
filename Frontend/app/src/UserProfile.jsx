@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // For internal navigation
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./components/Footer";
 import "./UserProfile.css";
 import heroImage from "./assets/hero-image.jpeg";
-import defaultProfilePic from "./assets/default-profile.jpg"; // Imported default profile image
+import defaultProfilePic from "./assets/default-profile.jpg";
 import { Plus, Minus,Lock, Unlock } from 'react-feather';
 
 const UserProfile = ({ isAdmin, isLoggedIn, user }) => {
-  // Default user if no user is provided
   const defaultUser = {
     name: "Default User",
     role: "ROLE",
@@ -127,17 +126,17 @@ const UserProfile = ({ isAdmin, isLoggedIn, user }) => {
             </div>
             <hr className="section-divider" />
 
-            {/* Notification Preferences (Always Visible) */}
+            {/* Notification Preferences*/}
             <div className="collapsible-section">
               <div className="section-header">
-                <Link to="/notification-preferences" className="section-link">
+                <Link to="/notification" className="section-link">
                   Notification Preferences
                 </Link>
               </div>
             </div>
             <hr className="section-divider" />
 
-            {/* Downloaded Documents (Always Visible) */}
+            {/* Downloaded Documents */}
             <div className="collapsible-section">
               <div className="section-header">
                 <Link to="/downloaded-documents" className="section-link">

@@ -157,7 +157,7 @@ const Navbar = () => {
                   <ul className="dropdown-menu">
                     <li><Link to="/home/Comparison">Comparison Page</Link></li>
                     <li><Link to="/home/Performance">Performance Metrics</Link></li>
-                    <li><Link to="/home/DataSearch">Data Search & API Access</Link></li>
+                    <li><Link to="/home/data">Data Search & API Access</Link></li>
                     <li><Link to="/home/DataExport">Data Export & Download</Link></li>
                   </ul>
                 )}

@@ -76,7 +76,148 @@ p {
   color: #ffffff;
   text-align: left;
 }
+/* Modal Styling for Login */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal__logo img {
+  width: 100px;
+  height: auto;
+  float: left;
+  position: block;
+}
+
+.modal__content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  height: 440px;
+  text-align: center;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Input Container Styling */
+.input-container {
+  width: 100%;
+  max-width: 380px; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 15px auto; 
+  border-bottom: 2px solid #ccc;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.input-container img {
+  position: absolute;
+  left: 10px;
+  width: 18px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #ffffff;
+  outline: none;
+  text-align: left; 
+  box-shadow: none; 
+}
+
+.input-container input::placeholder {
+  color: #888;
+  font-size: 14px;
+}
+
+.input-container:focus-within{
+  border-bottom: 2px solid #747677;
+  outline: none;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Remember and Forgot Password */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+/* Remember Me */
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.remember-me input {
+  margin-right: 5px;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  text-decoration: none;
+  background-color: #33333300;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.forgot-password:hover {
+  background: transparent;
+  color: #c9c5c5;
+}
+
+/* Modal Button */
+.modal button {
+  width: 150px;
+  border-radius: 3px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Sign up */
+.signup-text {
+  width: 100%;
+  font-size: 10px;
+}
+
+.signup-button {
+  font-size: 10px;
+}
+
+.signup-button:hover {
+  background: transparent;
+  color: #c9c5c5;
+}
 /* Responsive Design */
 @media screen and (max-width: 900px) {
   h1 {

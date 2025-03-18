@@ -19,7 +19,6 @@ body {
   position: relative;
 }
 
-/* Profile Container: Positioned to overlap the hero section */
 .profile-container {
   width: 100%;
   max-width: 768px;
@@ -33,11 +32,11 @@ body {
 /* Profile Wrapper: Stack elements vertically */
 .profile-wrapper {
   display: flex;
-  flex-direction: column; /* Stack image and text vertically */
+  flex-direction: column;
   align-items: center;
   padding: 1.5rem;
   border-radius: 1rem;
-  margin: 0 auto 1.5rem auto; /* Center horizontally */
+  margin: 0 auto 1.5rem auto;
   width: 100%;
 }
 
@@ -74,7 +73,6 @@ body {
   cursor: pointer;
 }
 
-/* Hide file input but make it clickable */
 .profile-file-input {
   position: absolute;
   top: 0;
@@ -125,11 +123,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   padding-bottom: 0.5rem;
 }
 
-/* Make sure the toggle button is properly styled and the icons are centered */
 .toggle-btn {
   background: none;
   border: none;
@@ -141,35 +138,35 @@ body {
   padding: 0;
 }
 
-/* Ensure the icons are appropriately sized */
 .toggle-btn svg {
-  width: 30px;   /* Adjust this size as needed */
-  height: 30px;  /* Adjust this size as needed */
-  color: #fff;   /* Ensure visibility on dark background */
+  width: 30px;   
+  height: 30px;  
+  color: #fff;
 }
 
-/* Optional: Add hover effect to the button */
 .toggle-btn:hover svg {
-  color: hsl(0, 0%, 96%); /* Change to a color of your choice */
+  color: hsl(0, 0%, 96%);
 }
 
 .section-content {
   padding: 0.5rem 0;
+
 }
 
 .section-link {
   color: #fff;
   text-decoration: none;
   font-size: 0.9rem;
+  font-size: 1.5rem;
+
 }
 
 .section-divider {
   border: none;
-  border-top: 1px solid #4a5568;
+  border-top: 1px solid #ffffff;
   margin: 1rem 0;
 }
 
-/* Responsive Styles for Smaller Screens */
 @media (max-width: 768px) {
   .profile-container {
     padding: 1rem;
@@ -210,7 +207,148 @@ body {
     font-size: 0.8rem;
   }
 }
+/* Modal Styling for Login */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.modal__logo img {
+  width: 100px;
+  height: auto;
+  float: left;
+  position: block;
+}
+
+.modal__content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px;
+  height: 440px;
+  text-align: center;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Input Container Styling */
+.input-container {
+  width: 100%;
+  max-width: 380px; 
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 15px auto; 
+  border-bottom: 2px solid #ccc;
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.input-container img {
+  position: absolute;
+  left: 10px;
+  width: 18px;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 10px 10px 10px 40px;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  color: #ffffff;
+  outline: none;
+  text-align: left; 
+  box-shadow: none; 
+}
+
+.input-container input::placeholder {
+  color: #888;
+  font-size: 14px;
+}
+
+.input-container:focus-within{
+  border-bottom: 2px solid #747677;
+  outline: none;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Remember and Forgot Password */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 80%;
+  margin: auto;
+}
+
+/* Remember Me */
+.remember-me {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.remember-me input {
+  margin-right: 5px;
+}
+
+/* Forgot Password Link */
+.forgot-password {
+  text-decoration: none;
+  background-color: #33333300;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.forgot-password:hover {
+  background: transparent;
+  color: #c9c5c5;
+}
+
+/* Modal Button */
+.modal button {
+  width: 150px;
+  border-radius: 3px;
+  display: block;
+  margin: 10px auto;
+}
+
+/* Sign up */
+.signup-text {
+  width: 100%;
+  font-size: 10px;
+}
+
+.signup-button {
+  font-size: 10px;
+}
+
+.signup-button:hover {
+  background: transparent;
+  color: #c9c5c5;
+}
 /* Footer */
 footer {
   background-color: #1a202c;

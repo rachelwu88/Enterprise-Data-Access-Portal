@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
 
-/* Body: Remove vertical centering */
 body {
   font-family: 'Inter', sans-serif;
   color: #fff;
@@ -109,14 +108,15 @@ body {
   font-weight: 400;
 }
 
+
 /* Change Password Section */
 .change-password-container {
-    text-align: left;
-    width: 100%;
-    max-width: 1024px;
-    margin: 2rem auto;
-  }
-  
+  text-align: left;
+  width: 100%;
+  max-width: 1024px;
+  margin: 2rem auto;
+}
+
 .headerC h2 {
   padding-top: 4em;
   font-size: 2rem;
@@ -124,179 +124,45 @@ body {
   text-align: left;
 }
 
-.section-dividerrs {
-    border: none;
-    border-top: 1px solid #ffffff;
-    margin-bottom: 4em;
+.textA h3 {
+  text-align: left;
+  font-size: 1.5rem;
+  margin-bottom: 4em;
 }
+
+.section-divider {
+  border: none;
+  border-top: 1px solid #ffffff;
+  margin-bottom: 4em;
+}
+
 .change-password-field {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    width: 100%;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+}
 
 .change-password-field label {
-    font-size: 1.5em;
-    width: 400px;
-    text-align: right;   
-    margin: 0;
+  font-size: 1.5em;
+  width: 400px;
+  text-align: right;
+  margin: 0;
 }
 
-.change-password-field textarea {
-    width: 400px; 
-    font-size: 1.5em;
-    height: 2.5rem;
-    background-color: #cbd5e0;
-    text-align: center;
-    margin: 0;
-    border-radius: 3px;
-    margin-left: 2em;
-    margin-right: 2em;
-}
-/* Modal Styling for Login */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal__logo img {
-  width: 100px;
-  height: auto;
-  float: left;
-  position: block;
-}
-
-.modal__content {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 20px;
-  border-radius: 8px;
-  width: 500px;
-  height: 440px;
+.change-password-field input {
+  width: 400px;
+  font-size: 1.5em;
+  height: 2.5rem;
+  background-color: #cbd5e0;
   text-align: center;
-}
-
-.modal__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-/* Input Container Styling */
-.input-container {
-  width: 100%;
-  max-width: 380px; 
-  position: relative;
-  display: flex;
-  align-items: center;
-  margin: 15px auto; 
-  border-bottom: 2px solid #ccc;
-  transition: border-bottom 0.3s ease-in-out;
-}
-
-.input-container img {
-  position: absolute;
-  left: 10px;
-  width: 18px;
-}
-
-.input-container input {
-  width: 100%;
-  padding: 10px 10px 10px 40px;
-  background: transparent;
-  border: none;
-  font-size: 16px;
-  color: #ffffff;
-  outline: none;
-  text-align: left; 
-  box-shadow: none; 
-}
-
-.input-container input::placeholder {
-  color: #888;
-  font-size: 14px;
-}
-
-.input-container:focus-within{
-  border-bottom: 2px solid #747677;
-  outline: none;
-}
-
-/* Form Styling */
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Remember and Forgot Password */
-.remember-forgot {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
-  width: 80%;
-  margin: auto;
-}
-
-/* Remember Me */
-.remember-me {
-  display: flex;
-  align-items: center;
-  color: #ffffff;
-  font-size: 10px;
-  white-space: nowrap;
-}
-
-.remember-me input {
-  margin-right: 5px;
-}
-
-/* Forgot Password Link */
-.forgot-password {
-  text-decoration: none;
-  background-color: #33333300;
-  color: #ffffff;
-  font-weight: bold;
-  font-size: 10px;
-}
-
-.forgot-password:hover {
-  background: transparent;
-  color: #c9c5c5;
-}
-
-/* Modal Button */
-.modal button {
-  width: 150px;
+  margin: 0;
   border-radius: 3px;
-  display: block;
-  margin: 10px auto;
+  margin-left: 2em;
+  margin-right: 2em;
 }
 
-/* Sign up */
-.signup-text {
-  width: 100%;
-  font-size: 10px;
-}
-
-.signup-button {
-  font-size: 10px;
-}
-
-.signup-button:hover {
-  background: transparent;
-  color: #c9c5c5;
-}
 @media (max-width: 1024px) {
   .change-password-field {
     flex-direction: column;
@@ -311,7 +177,7 @@ form {
     margin-bottom: 0.5rem;
   }
 
-  .change-password-field textarea {
+  .change-password-field input {
     width: 100%;
     font-size: 1.2em;
     height: 2.5rem;
@@ -319,8 +185,27 @@ form {
   }
 
   .profile-container {
-    margin: -250px auto 100px auto; 
+    margin: -250px auto 100px auto;
     padding: 0.5rem;
+  }
+
+  .profile-image-container {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .edit-pic-btn {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  .profile-name {
+    font-size: 1.2rem;
+  }
+
+  .profile-role,
+  .profile-email {
+    font-size: 1rem;
   }
 }
 
@@ -337,7 +222,7 @@ form {
   .edit-pic-btn {
     width: 1.5rem;
     height: 1.5rem;
-    font-size: 0.8rem; /* Scale button down */
+    font-size: 0.8rem;
   }
 
   .profile-name {
@@ -353,15 +238,13 @@ form {
     font-size: 1em;
   }
 
-  .change-password-field textarea {
+  .change-password-field input {
     font-size: 1em;
     height: 2rem;
   }
 }
 
-.spacer {
-    margin-bottom: 15em;
-}
+
 /* Footer */
 footer {
   background-color: #1a202c;

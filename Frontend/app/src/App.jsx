@@ -10,7 +10,9 @@ import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Password from "./ChangePassword";
-
+import Notification from "./Notifications"
+import Data from "./Data"
+import Recovery from "./Recovery"
 function App() {
   return (
     <Router>
@@ -34,13 +36,18 @@ function App() {
         <Route path="/features" element={<Features />} />
         {/* Change Password page */}
         <Route path="/change-password" element={<Password />} />
+        {/* Notification page */}
+        <Route path="/notification" element={<Notification />} />
+        {/* Recovery Page */}
+        <Route path="/update-recovery-email" element={<Recovery />} />
         {/* Contact page */}
         <Route path="/contact" element={<Contact />} />
         {/* User page */}
         <Route path="/user" element={<User />} /> 
         {/* Report page */}
         <Route path="/report" element={<Report />} />
-
+        {/*Data Page */}
+        <Route path="/data" element={<Data />} />
         {/* FAQ page */}
         <Route path="/faq" element={<FAQ />} />
       </Routes>
