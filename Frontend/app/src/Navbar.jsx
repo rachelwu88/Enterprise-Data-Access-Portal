@@ -6,6 +6,7 @@ import sandwichIcon from './assets/sandwich-icon.png';
 import mailbox from './assets/mail.png';
 import lock from './assets/lock.png';
 import Signup from './SignUp.jsx';
+import Authenticate from './Authenticate.jsx';
 import homeIcon from './assets/home-icon.png';
 import userIcon from './assets/user-icon.png';
 import reportIcon from './assets/report-icon.png';
@@ -18,8 +19,9 @@ const Navbar = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState(null); // State for the active dropdown
-  const location = useLocation(); // Get current route path
+  const [is2FAOpen, setIs2FAOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const location = useLocation(); 
 
   useEffect(() => {
     const storedLoginState = localStorage.getItem('isLoggedIn');
@@ -29,18 +31,9 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    // Ensure sidebar is closed when navigating to a different page
     setIsSidebarOpen(false);
-    document.body.classList.remove('content-pushed'); // Ensure content is reset when navigating
+    document.body.classList.remove('content-pushed');
   }, [location]);
-
-  const toggleDropdown = (dropdownId) => {
-    if (isSidebarOpen && activeDropdown === dropdownId) {
-      setActiveDropdown(null); // Close the active dropdown if clicked again
-    } else {
-      setActiveDropdown(dropdownId); // Open the new dropdown and close others
-    }
-  };
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => {
@@ -48,13 +41,10 @@ const Navbar = () => {
     setIsSignup(false);
   };
 
-  const toggleSignup = (signupState) => setIsSignup(signupState);
-
   const handleLogin = (e) => {
     e.preventDefault();
-    setIsLoggedIn(true);
-    localStorage.setItem('isLoggedIn', 'true');
     setIsModalOpen(false);
+    setIs2FAOpen(true);  // Open the 2FA modal
   };
 
   const handleLogout = () => {
@@ -65,6 +55,14 @@ const Navbar = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
     document.body.classList.toggle('content-pushed', !isSidebarOpen);
+  };
+
+  const toggleDropdown = (dropdownId) => {
+    if (isSidebarOpen && activeDropdown === dropdownId) {
+      setActiveDropdown(null); // Close the active dropdown if clicked again
+    } else {
+      setActiveDropdown(dropdownId); // Open the new dropdown and close others
+    }
   };
 
   const handleHomeClick = () => {
@@ -128,13 +126,21 @@ const Navbar = () => {
                   <a href="#forgot-password" className="forgot-password">Forgot Password?</a>
                 </div><br />
                 <button type="submit">Login</button><br />
-                <p className="signup-text">Don&apos;t have an account? <span onClick={() => toggleSignup(true)} className="signup-button">Register</span></p>
+                <p className="signup-text">Don&apos;t have an account? <span onClick={() => setIsSignup(true)} className="signup-button">Register</span></p>
               </form>
             </div>
           ) : (
-            <Signup toggleSignup={toggleSignup} />
+            <Signup toggleSignup={setIsSignup} />
           )}
         </div>
+      )}
+
+      {is2FAOpen && (
+        <Authenticate onSuccess={() => {
+          setIsLoggedIn(true);
+          localStorage.setItem('isLoggedIn', 'true');
+          setIs2FAOpen(false);
+        }} />
       )}
 
       {isLoggedIn && (
