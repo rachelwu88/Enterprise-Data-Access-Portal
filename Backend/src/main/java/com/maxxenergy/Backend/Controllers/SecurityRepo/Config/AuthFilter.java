@@ -20,7 +20,7 @@ public class AuthFilter extends OncePerRequestFilter {
     private final AuthService authService;
     private final UserDetailsService userDetailsService;
 
-    // ✅ Inject AuthService & UserDetailsService
+    // Inject AuthService & UserDetailsService
     public AuthFilter(AuthService authService, UserDetailsService userDetailsService) {
         this.authService = authService;
         this.userDetailsService = userDetailsService;
@@ -46,6 +46,7 @@ public class AuthFilter extends OncePerRequestFilter {
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);
+
             if (authService.isTokenValid(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #fff;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-top: -150px;
+  width: 100%;
+  height: 500px;
+  background-color: #000;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  position: relative;
+}
+
+/* Increase container width to better fit content */
+.profile-container {
+  width: 100%;
+  max-width: 1024px;
+  padding: 1rem;
+  text-align: center;
+  margin: -350px auto 200px auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Profile Wrapper */
+.profile-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  margin: 0 auto 1.5rem auto;
+  width: 100%;
+}
+
+/* Profile Image Container */
+.profile-image-container {
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto;
+}
+
+/* Profile Picture */
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #2d3748;
+}
+
+/* Edit Profile Picture Button */
+.edit-pic-btn {
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+  background-color: #232323;
+  color: #fff;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Hide file input */
+.profile-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.profile-info {
+  text-align: center;
+  font-weight: 400;
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  margin-bottom: -20px;
+}
+
+.profile-role {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #cbd5e0;
+  margin-bottom: -20px;
+}
+
+.profile-email {
+  font-size: 1rem;
+  color: #cbd5e0;
+  font-weight: 400;
+}
+
+/* Header styles */
+.headerZ h3 {
+padding-top: 1rem;
+font-size: 1.5rem;
+margin-bottom: 1rem;
+text-align: left;   
+}
+
+.headerS h3, .headerS h2 {
+  padding-top: 4rem;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+/* Container for alerts */
+.security-alerts-container {
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
+  text-align: left;
+}
+
+.security-alerts-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
+  margin: 1rem 0;
+}
+
+/* Toggle Switch (Slider) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 64px; 
+  height: 36px; 
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #333232;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 28px; /* Bigger circle */
+  width: 28px;
+  border-radius: 50%;
+  left: 4px;
+  bottom: 4px;
+  background-color: rgb(36, 36, 36);
+  transition: 0.4s;
+}
+
+/* When checked, change color and move the circle */
+input:checked + .slider {
+  background-color: #ffffff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(32px); /* Moves circle fully to the right */
+}
+
+/* Spacer */
+.spacer {
+  height: 1rem;
+}

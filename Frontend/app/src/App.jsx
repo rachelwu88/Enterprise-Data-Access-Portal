@@ -10,8 +10,14 @@ import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Password from "./ChangePassword";
+<<<<<<< HEAD
 import AccountRecovery from "./AccountRecovery";
 
+=======
+import Notification from "./Notifications"
+import Data from "./Data"
+import Recovery from "./Recovery"
+>>>>>>> e7603267b9a7c9adf387d924b9a5f624d4f42d20
 function App() {
   return (
     <Router>
@@ -35,14 +41,23 @@ function App() {
         <Route path="/features" element={<Features />} />
         {/* Change Password page */}
         <Route path="/change-password" element={<Password />} />
+        {/* Notification page */}
+        <Route path="/notification" element={<Notification />} />
+        {/* Recovery Page */}
+        <Route path="/update-recovery-email" element={<Recovery />} />
         {/* Contact page */}
         <Route path="/contact" element={<Contact />} />
         {/* User page */}
         <Route path="/user" element={<User />} /> 
         {/* Report page */}
         <Route path="/report" element={<Report />} />
+<<<<<<< HEAD
         {/* Account Recovery */}
         <Route path="/update-recovery-email" element={<AccountRecovery />} />
+=======
+        {/*Data Page */}
+        <Route path="/data" element={<Data />} />
+>>>>>>> e7603267b9a7c9adf387d924b9a5f624d4f42d20
         {/* FAQ page */}
         <Route path="/faq" element={<FAQ />} />
       </Routes>
