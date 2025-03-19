@@ -6,6 +6,7 @@ import "./UserProfile.css";
 import heroImage from "./assets/hero-image.jpeg";
 import defaultProfilePic from "./assets/default-profile.jpg"; // Imported default profile image
 import { Plus, Minus,Lock, Unlock } from 'react-feather';
+import AccountRecovery from "./AccountRecovery";
 
 const UserProfile = ({ isAdmin, isLoggedIn, user }) => {
   // Default user if no user is provided

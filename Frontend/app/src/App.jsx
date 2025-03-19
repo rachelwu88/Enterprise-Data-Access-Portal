@@ -10,6 +10,7 @@ import User from "./UserProfile";
 import FAQ from "./components/FAQ";
 import Footer from "./components/Footer";
 import Password from "./ChangePassword";
+import AccountRecovery from "./AccountRecovery";
 
 function App() {
   return (
@@ -40,7 +41,8 @@ function App() {
         <Route path="/user" element={<User />} /> 
         {/* Report page */}
         <Route path="/report" element={<Report />} />
-
+        {/* Account Recovery */}
+        <Route path="/update-recovery-email" element={<AccountRecovery />} />
         {/* FAQ page */}
         <Route path="/faq" element={<FAQ />} />
       </Routes>
